@@ -10,8 +10,8 @@ import (
 )
 
 /*
- * GdkScreen
- */
+* GdkScreen
+*/
 
 // Screen is a representation of GDK's GdkScreen.
 type Screen struct {
