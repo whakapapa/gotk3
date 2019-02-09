@@ -43,64 +43,65 @@ func init() {
 		"GtkRevealer":   wrapRevealer,
 		"GtkSearchBar":  wrapSearchBar,
 		"GtkStack":      wrapStack,
-	} {
-		WrapMap[k] = v
+		} {
+			WrapMap[k] = v
+		}
 	}
-}
 
-/*
- * Constants
- */
+	/*
+	* Constants
+	*/
 
-const (
-	ALIGN_BASELINE Align = C.GTK_ALIGN_BASELINE
-)
+	const (
+		ALIGN_BASELINE Align = C.GTK_ALIGN_BASELINE
+	)
 
-// RevealerTransitionType is a representation of GTK's GtkRevealerTransitionType.
-type RevealerTransitionType int
+	// RevealerTransitionType is a representation of GTK's GtkRevealerTransitionType.
+	type RevealerTransitionType int
 
-const (
-	REVEALER_TRANSITION_TYPE_NONE        RevealerTransitionType = C.GTK_REVEALER_TRANSITION_TYPE_NONE
-	REVEALER_TRANSITION_TYPE_CROSSFADE   RevealerTransitionType = C.GTK_REVEALER_TRANSITION_TYPE_CROSSFADE
-	REVEALER_TRANSITION_TYPE_SLIDE_RIGHT RevealerTransitionType = C.GTK_REVEALER_TRANSITION_TYPE_SLIDE_RIGHT
-	REVEALER_TRANSITION_TYPE_SLIDE_LEFT  RevealerTransitionType = C.GTK_REVEALER_TRANSITION_TYPE_SLIDE_LEFT
-	REVEALER_TRANSITION_TYPE_SLIDE_UP    RevealerTransitionType = C.GTK_REVEALER_TRANSITION_TYPE_SLIDE_UP
-	REVEALER_TRANSITION_TYPE_SLIDE_DOWN  RevealerTransitionType = C.GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN
-)
 
-func marshalRevealerTransitionType(p uintptr) (interface{}, error) {
-	c := C.g_value_get_enum((*C.GValue)(unsafe.Pointer(p)))
-	return RevealerTransitionType(c), nil
-}
+	const (
+		REVEALER_TRANSITION_TYPE_NONE        RevealerTransitionType = C.GTK_REVEALER_TRANSITION_TYPE_NONE
+		REVEALER_TRANSITION_TYPE_CROSSFADE   RevealerTransitionType = C.GTK_REVEALER_TRANSITION_TYPE_CROSSFADE
+		REVEALER_TRANSITION_TYPE_SLIDE_RIGHT RevealerTransitionType = C.GTK_REVEALER_TRANSITION_TYPE_SLIDE_RIGHT
+		REVEALER_TRANSITION_TYPE_SLIDE_LEFT  RevealerTransitionType = C.GTK_REVEALER_TRANSITION_TYPE_SLIDE_LEFT
+		REVEALER_TRANSITION_TYPE_SLIDE_UP    RevealerTransitionType = C.GTK_REVEALER_TRANSITION_TYPE_SLIDE_UP
+		REVEALER_TRANSITION_TYPE_SLIDE_DOWN  RevealerTransitionType = C.GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN
+	)
 
-// StackTransitionType is a representation of GTK's GtkStackTransitionType.
-type StackTransitionType int
+	func marshalRevealerTransitionType(p uintptr) (interface{}, error) {
+		c := C.g_value_get_enum((*C.GValue)(unsafe.Pointer(p)))
+		return RevealerTransitionType(c), nil
+	}
 
-const (
-	STACK_TRANSITION_TYPE_NONE             StackTransitionType = C.GTK_STACK_TRANSITION_TYPE_NONE
-	STACK_TRANSITION_TYPE_CROSSFADE        StackTransitionType = C.GTK_STACK_TRANSITION_TYPE_CROSSFADE
-	STACK_TRANSITION_TYPE_SLIDE_RIGHT      StackTransitionType = C.GTK_STACK_TRANSITION_TYPE_SLIDE_RIGHT
-	STACK_TRANSITION_TYPE_SLIDE_LEFT       StackTransitionType = C.GTK_STACK_TRANSITION_TYPE_SLIDE_LEFT
-	STACK_TRANSITION_TYPE_SLIDE_UP         StackTransitionType = C.GTK_STACK_TRANSITION_TYPE_SLIDE_UP
-	STACK_TRANSITION_TYPE_SLIDE_DOWN       StackTransitionType = C.GTK_STACK_TRANSITION_TYPE_SLIDE_DOWN
-	STACK_TRANSITION_TYPE_SLIDE_LEFT_RIGHT StackTransitionType = C.GTK_STACK_TRANSITION_TYPE_SLIDE_LEFT_RIGHT
-	STACK_TRANSITION_TYPE_SLIDE_UP_DOWN    StackTransitionType = C.GTK_STACK_TRANSITION_TYPE_SLIDE_UP_DOWN
-)
+	// StackTransitionType is a representation of GTK's GtkStackTransitionType.
+	type StackTransitionType int
 
-func marshalStackTransitionType(p uintptr) (interface{}, error) {
-	c := C.g_value_get_enum((*C.GValue)(unsafe.Pointer(p)))
-	return StackTransitionType(c), nil
-}
+	const (
+		STACK_TRANSITION_TYPE_NONE             StackTransitionType = C.GTK_STACK_TRANSITION_TYPE_NONE
+		STACK_TRANSITION_TYPE_CROSSFADE        StackTransitionType = C.GTK_STACK_TRANSITION_TYPE_CROSSFADE
+		STACK_TRANSITION_TYPE_SLIDE_RIGHT      StackTransitionType = C.GTK_STACK_TRANSITION_TYPE_SLIDE_RIGHT
+		STACK_TRANSITION_TYPE_SLIDE_LEFT       StackTransitionType = C.GTK_STACK_TRANSITION_TYPE_SLIDE_LEFT
+		STACK_TRANSITION_TYPE_SLIDE_UP         StackTransitionType = C.GTK_STACK_TRANSITION_TYPE_SLIDE_UP
+		STACK_TRANSITION_TYPE_SLIDE_DOWN       StackTransitionType = C.GTK_STACK_TRANSITION_TYPE_SLIDE_DOWN
+		STACK_TRANSITION_TYPE_SLIDE_LEFT_RIGHT StackTransitionType = C.GTK_STACK_TRANSITION_TYPE_SLIDE_LEFT_RIGHT
+		STACK_TRANSITION_TYPE_SLIDE_UP_DOWN    StackTransitionType = C.GTK_STACK_TRANSITION_TYPE_SLIDE_UP_DOWN
+	)
 
-/*
- * GtkButton
- */
+	func marshalStackTransitionType(p uintptr) (interface{}, error) {
+		c := C.g_value_get_enum((*C.GValue)(unsafe.Pointer(p)))
+		return StackTransitionType(c), nil
+	}
 
-// ButtonNewFromIconName is a wrapper around gtk_button_new_from_icon_name().
-func ButtonNewFromIconName(iconName string, size IconSize) (*Button, error) {
-	cstr := C.CString(iconName)
-	defer C.free(unsafe.Pointer(cstr))
-	c := C.gtk_button_new_from_icon_name((*C.gchar)(cstr),
+	/*
+	* GtkButton
+	*/
+
+	// ButtonNewFromIconName is a wrapper around gtk_button_new_from_icon_name().
+	func ButtonNewFromIconName(iconName string, size IconSize) (*Button, error) {
+		cstr := C.CString(iconName)
+		defer C.free(unsafe.Pointer(cstr))
+		c := C.gtk_button_new_from_icon_name((*C.gchar)(cstr),
 		C.GtkIconSize(size))
 	if c == nil {
 		return nil, nilPtrErr
@@ -109,8 +110,8 @@ func ButtonNewFromIconName(iconName string, size IconSize) (*Button, error) {
 }
 
 /*
- * GtkGrid
- */
+* GtkGrid
+*/
 
 // RemoveRow() is a wrapper around gtk_grid_remove_row().
 func (v *Grid) RemoveRow(position int) {
@@ -123,8 +124,8 @@ func (v *Grid) RemoveColumn(position int) {
 }
 
 /*
- * GtkHeaderBar
- */
+* GtkHeaderBar
+*/
 
 type HeaderBar struct {
 	Container
@@ -220,8 +221,8 @@ func (v *HeaderBar) GetShowCloseButton() bool {
 }
 
 /*
- * GtkLabel
- */
+* GtkLabel
+*/
 
 // GetLines() is a wrapper around gtk_label_get_lines().
 func (v *Label) GetLines() int {
@@ -235,8 +236,8 @@ func (v *Label) SetLines(lines int) {
 }
 
 /*
- * GtkListBox
- */
+* GtkListBox
+*/
 
 // ListBox is a representation of GTK's GtkListBox.
 type ListBox struct {
@@ -379,324 +380,324 @@ var (
 		sync.RWMutex
 		next int
 		m    map[int]listBoxFilterFuncData
-	}{
-		next: 1,
-		m:    make(map[int]listBoxFilterFuncData),
+		}{
+			next: 1,
+			m:    make(map[int]listBoxFilterFuncData),
+		}
+	)
+
+	func (v *ListBox) SetFilterFunc(fn ListBoxFilterFunc, userData uintptr) {
+		listBoxFilterFuncRegistry.Lock()
+		id := listBoxFilterFuncRegistry.next
+		listBoxFilterFuncRegistry.next++
+		listBoxFilterFuncRegistry.m[id] = listBoxFilterFuncData{fn: fn, userData: userData}
+		listBoxFilterFuncRegistry.Unlock()
+
+		C._gtk_list_box_set_filter_func(v.native(), C.gpointer(uintptr(id)))
 	}
-)
 
-func (v *ListBox) SetFilterFunc(fn ListBoxFilterFunc, userData uintptr) {
-	listBoxFilterFuncRegistry.Lock()
-	id := listBoxFilterFuncRegistry.next
-	listBoxFilterFuncRegistry.next++
-	listBoxFilterFuncRegistry.m[id] = listBoxFilterFuncData{fn: fn, userData: userData}
-	listBoxFilterFuncRegistry.Unlock()
+	// TODO: SetHeaderFunc
+	// TODO: SetSortFunc
 
-	C._gtk_list_box_set_filter_func(v.native(), C.gpointer(uintptr(id)))
-}
-
-// TODO: SetHeaderFunc
-// TODO: SetSortFunc
-
-// DragHighlightRow is a wrapper around gtk_list_box_drag_highlight_row()
-func (v *ListBox) DragHighlightRow(row *ListBoxRow) {
-	C.gtk_list_box_drag_highlight_row(v.native(), row.native())
-}
-
-/*
- * GtkListBoxRow
- */
-
-// ListBoxRow is a representation of GTK's GtkListBoxRow.
-type ListBoxRow struct {
-	Bin
-}
-
-// native returns a pointer to the underlying GtkListBoxRow.
-func (v *ListBoxRow) native() *C.GtkListBoxRow {
-	if v == nil || v.GObject == nil {
-		return nil
+	// DragHighlightRow is a wrapper around gtk_list_box_drag_highlight_row()
+	func (v *ListBox) DragHighlightRow(row *ListBoxRow) {
+		C.gtk_list_box_drag_highlight_row(v.native(), row.native())
 	}
-	p := unsafe.Pointer(v.GObject)
-	return C.toGtkListBoxRow(p)
-}
 
-func marshalListBoxRow(p uintptr) (interface{}, error) {
-	c := C.g_value_get_object((*C.GValue)(unsafe.Pointer(p)))
-	obj := glib.Take(unsafe.Pointer(c))
-	return wrapListBoxRow(obj), nil
-}
+	/*
+	* GtkListBoxRow
+	*/
 
-func wrapListBoxRow(obj *glib.Object) *ListBoxRow {
-	return &ListBoxRow{Bin{Container{Widget{glib.InitiallyUnowned{obj}}}}}
-}
-
-func ListBoxRowNew() (*ListBoxRow, error) {
-	c := C.gtk_list_box_row_new()
-	if c == nil {
-		return nil, nilPtrErr
+	// ListBoxRow is a representation of GTK's GtkListBoxRow.
+	type ListBoxRow struct {
+		Bin
 	}
-	return wrapListBoxRow(glib.Take(unsafe.Pointer(c))), nil
-}
 
-// Changed is a wrapper around gtk_list_box_row_changed().
-func (v *ListBoxRow) Changed() {
-	C.gtk_list_box_row_changed(v.native())
-}
-
-// GetHeader is a wrapper around gtk_list_box_row_get_header().
-func (v *ListBoxRow) GetHeader() *Widget {
-	c := C.gtk_list_box_row_get_header(v.native())
-	if c == nil {
-		return nil
+	// native returns a pointer to the underlying GtkListBoxRow.
+	func (v *ListBoxRow) native() *C.GtkListBoxRow {
+		if v == nil || v.GObject == nil {
+			return nil
+		}
+		p := unsafe.Pointer(v.GObject)
+		return C.toGtkListBoxRow(p)
 	}
-	return wrapWidget(glib.Take(unsafe.Pointer(c)))
-}
 
-// SetHeader is a wrapper around gtk_list_box_row_get_header().
-func (v *ListBoxRow) SetHeader(header IWidget) {
-	C.gtk_list_box_row_set_header(v.native(), header.toWidget())
-}
-
-// GetIndex is a wrapper around gtk_list_box_row_get_index()
-func (v *ListBoxRow) GetIndex() int {
-	c := C.gtk_list_box_row_get_index(v.native())
-	return int(c)
-}
-
-/*
- * GtkRevealer
- */
-
-// Revealer is a representation of GTK's GtkRevealer
-type Revealer struct {
-	Bin
-}
-
-// native returns a pointer to the underlying GtkRevealer.
-func (v *Revealer) native() *C.GtkRevealer {
-	if v == nil || v.GObject == nil {
-		return nil
+	func marshalListBoxRow(p uintptr) (interface{}, error) {
+		c := C.g_value_get_object((*C.GValue)(unsafe.Pointer(p)))
+		obj := glib.Take(unsafe.Pointer(c))
+		return wrapListBoxRow(obj), nil
 	}
-	p := unsafe.Pointer(v.GObject)
-	return C.toGtkRevealer(p)
-}
 
-func marshalRevealer(p uintptr) (interface{}, error) {
-	c := C.g_value_get_object((*C.GValue)(unsafe.Pointer(p)))
-	obj := glib.Take(unsafe.Pointer(c))
-	return wrapRevealer(obj), nil
-}
-
-func wrapRevealer(obj *glib.Object) *Revealer {
-	return &Revealer{Bin{Container{Widget{glib.InitiallyUnowned{obj}}}}}
-}
-
-// RevealerNew is a wrapper around gtk_revealer_new()
-func RevealerNew() (*Revealer, error) {
-	c := C.gtk_revealer_new()
-	if c == nil {
-		return nil, nilPtrErr
+	func wrapListBoxRow(obj *glib.Object) *ListBoxRow {
+		return &ListBoxRow{Bin{Container{Widget{glib.InitiallyUnowned{obj}}}}}
 	}
-	return wrapRevealer(glib.Take(unsafe.Pointer(c))), nil
-}
 
-// GetRevealChild is a wrapper around gtk_revealer_get_reveal_child().
-func (v *Revealer) GetRevealChild() bool {
-	c := C.gtk_revealer_get_reveal_child(v.native())
-	return gobool(c)
-}
-
-// SetRevealChild is a wrapper around gtk_revealer_set_reveal_child().
-func (v *Revealer) SetRevealChild(revealChild bool) {
-	C.gtk_revealer_set_reveal_child(v.native(), gbool(revealChild))
-}
-
-// GetChildRevealed is a wrapper around gtk_revealer_get_child_revealed().
-func (v *Revealer) GetChildRevealed() bool {
-	c := C.gtk_revealer_get_child_revealed(v.native())
-	return gobool(c)
-}
-
-// GetTransitionDuration is a wrapper around gtk_revealer_get_transition_duration()
-func (v *Revealer) GetTransitionDuration() uint {
-	c := C.gtk_revealer_get_transition_duration(v.native())
-	return uint(c)
-}
-
-// SetTransitionDuration is a wrapper around gtk_revealer_set_transition_duration().
-func (v *Revealer) SetTransitionDuration(duration uint) {
-	C.gtk_revealer_set_transition_duration(v.native(), C.guint(duration))
-}
-
-// GetTransitionType is a wrapper around gtk_revealer_get_transition_type()
-func (v *Revealer) GetTransitionType() RevealerTransitionType {
-	c := C.gtk_revealer_get_transition_type(v.native())
-	return RevealerTransitionType(c)
-}
-
-// SetTransitionType is a wrapper around gtk_revealer_set_transition_type()
-func (v *Revealer) SetTransitionType(transition RevealerTransitionType) {
-	t := C.GtkRevealerTransitionType(transition)
-	C.gtk_revealer_set_transition_type(v.native(), t)
-}
-
-/*
- * GtkSearchBar
- */
-
-// SearchBar is a representation of GTK's GtkSearchBar.
-type SearchBar struct {
-	Bin
-}
-
-// native returns a pointer to the underlying GtkSearchBar.
-func (v *SearchBar) native() *C.GtkSearchBar {
-	if v == nil || v.GObject == nil {
-		return nil
+	func ListBoxRowNew() (*ListBoxRow, error) {
+		c := C.gtk_list_box_row_new()
+		if c == nil {
+			return nil, nilPtrErr
+		}
+		return wrapListBoxRow(glib.Take(unsafe.Pointer(c))), nil
 	}
-	p := unsafe.Pointer(v.GObject)
-	return C.toGtkSearchBar(p)
-}
 
-func marshalSearchBar(p uintptr) (interface{}, error) {
-	c := C.g_value_get_object((*C.GValue)(unsafe.Pointer(p)))
-	obj := glib.Take(unsafe.Pointer(c))
-	return wrapSearchBar(obj), nil
-}
-
-func wrapSearchBar(obj *glib.Object) *SearchBar {
-	return &SearchBar{Bin{Container{Widget{glib.InitiallyUnowned{obj}}}}}
-}
-
-// SearchBarNew is a wrapper around gtk_search_bar_new()
-func SearchBarNew() (*SearchBar, error) {
-	c := C.gtk_search_bar_new()
-	if c == nil {
-		return nil, nilPtrErr
+	// Changed is a wrapper around gtk_list_box_row_changed().
+	func (v *ListBoxRow) Changed() {
+		C.gtk_list_box_row_changed(v.native())
 	}
-	return wrapSearchBar(glib.Take(unsafe.Pointer(c))), nil
-}
 
-// ConnectEntry is a wrapper around gtk_search_bar_connect_entry().
-func (v *SearchBar) ConnectEntry(entry IEntry) {
-	C.gtk_search_bar_connect_entry(v.native(), entry.toEntry())
-}
-
-// GetSearchMode is a wrapper around gtk_search_bar_get_search_mode().
-func (v *SearchBar) GetSearchMode() bool {
-	c := C.gtk_search_bar_get_search_mode(v.native())
-	return gobool(c)
-}
-
-// SetSearchMode is a wrapper around gtk_search_bar_set_search_mode().
-func (v *SearchBar) SetSearchMode(searchMode bool) {
-	C.gtk_search_bar_set_search_mode(v.native(), gbool(searchMode))
-}
-
-// GetShowCloseButton is a wrapper arounb gtk_search_bar_get_show_close_button().
-func (v *SearchBar) GetShowCloseButton() bool {
-	c := C.gtk_search_bar_get_show_close_button(v.native())
-	return gobool(c)
-}
-
-// SetShowCloseButton is a wrapper around gtk_search_bar_set_show_close_button()
-func (v *SearchBar) SetShowCloseButton(visible bool) {
-	C.gtk_search_bar_set_show_close_button(v.native(), gbool(visible))
-}
-
-// HandleEvent is a wrapper around gtk_search_bar_handle_event()
-func (v *SearchBar) HandleEvent(event *gdk.Event) {
-	e := (*C.GdkEvent)(unsafe.Pointer(event.Native()))
-	C.gtk_search_bar_handle_event(v.native(), e)
-}
-
-/*
- * GtkStack
- */
-
-// Stack is a representation of GTK's GtkStack.
-type Stack struct {
-	Container
-}
-
-// native returns a pointer to the underlying GtkStack.
-func (v *Stack) native() *C.GtkStack {
-	if v == nil || v.GObject == nil {
-		return nil
+	// GetHeader is a wrapper around gtk_list_box_row_get_header().
+	func (v *ListBoxRow) GetHeader() *Widget {
+		c := C.gtk_list_box_row_get_header(v.native())
+		if c == nil {
+			return nil
+		}
+		return wrapWidget(glib.Take(unsafe.Pointer(c)))
 	}
-	p := unsafe.Pointer(v.GObject)
-	return C.toGtkStack(p)
-}
 
-func marshalStack(p uintptr) (interface{}, error) {
-	c := C.g_value_get_object((*C.GValue)(unsafe.Pointer(p)))
-	obj := glib.Take(unsafe.Pointer(c))
-	return wrapStack(obj), nil
-}
-
-func wrapStack(obj *glib.Object) *Stack {
-	return &Stack{Container{Widget{glib.InitiallyUnowned{obj}}}}
-}
-
-// StackNew is a wrapper around gtk_stack_new().
-func StackNew() (*Stack, error) {
-	c := C.gtk_stack_new()
-	if c == nil {
-		return nil, nilPtrErr
+	// SetHeader is a wrapper around gtk_list_box_row_get_header().
+	func (v *ListBoxRow) SetHeader(header IWidget) {
+		C.gtk_list_box_row_set_header(v.native(), header.toWidget())
 	}
-	return wrapStack(glib.Take(unsafe.Pointer(c))), nil
-}
 
-// AddNamed is a wrapper around gtk_stack_add_named().
-func (v *Stack) AddNamed(child IWidget, name string) {
-	cstr := C.CString(name)
-	defer C.free(unsafe.Pointer(cstr))
-	C.gtk_stack_add_named(v.native(), child.toWidget(), (*C.gchar)(cstr))
-}
+	// GetIndex is a wrapper around gtk_list_box_row_get_index()
+	func (v *ListBoxRow) GetIndex() int {
+		c := C.gtk_list_box_row_get_index(v.native())
+		return int(c)
+	}
 
-// AddTitled is a wrapper around gtk_stack_add_titled().
-func (v *Stack) AddTitled(child IWidget, name, title string) {
-	cName := C.CString(name)
-	defer C.free(unsafe.Pointer(cName))
-	cTitle := C.CString(title)
-	defer C.free(unsafe.Pointer(cTitle))
-	C.gtk_stack_add_titled(v.native(), child.toWidget(), (*C.gchar)(cName),
+	/*
+	* GtkRevealer
+	*/
+
+	// Revealer is a representation of GTK's GtkRevealer
+	type Revealer struct {
+		Bin
+	}
+
+	// native returns a pointer to the underlying GtkRevealer.
+	func (v *Revealer) native() *C.GtkRevealer {
+		if v == nil || v.GObject == nil {
+			return nil
+		}
+		p := unsafe.Pointer(v.GObject)
+		return C.toGtkRevealer(p)
+	}
+
+	func marshalRevealer(p uintptr) (interface{}, error) {
+		c := C.g_value_get_object((*C.GValue)(unsafe.Pointer(p)))
+		obj := glib.Take(unsafe.Pointer(c))
+		return wrapRevealer(obj), nil
+	}
+
+	func wrapRevealer(obj *glib.Object) *Revealer {
+		return &Revealer{Bin{Container{Widget{glib.InitiallyUnowned{obj}}}}}
+	}
+
+	// RevealerNew is a wrapper around gtk_revealer_new()
+	func RevealerNew() (*Revealer, error) {
+		c := C.gtk_revealer_new()
+		if c == nil {
+			return nil, nilPtrErr
+		}
+		return wrapRevealer(glib.Take(unsafe.Pointer(c))), nil
+	}
+
+	// GetRevealChild is a wrapper around gtk_revealer_get_reveal_child().
+	func (v *Revealer) GetRevealChild() bool {
+		c := C.gtk_revealer_get_reveal_child(v.native())
+		return gobool(c)
+	}
+
+	// SetRevealChild is a wrapper around gtk_revealer_set_reveal_child().
+	func (v *Revealer) SetRevealChild(revealChild bool) {
+		C.gtk_revealer_set_reveal_child(v.native(), gbool(revealChild))
+	}
+
+	// GetChildRevealed is a wrapper around gtk_revealer_get_child_revealed().
+	func (v *Revealer) GetChildRevealed() bool {
+		c := C.gtk_revealer_get_child_revealed(v.native())
+		return gobool(c)
+	}
+
+	// GetTransitionDuration is a wrapper around gtk_revealer_get_transition_duration()
+	func (v *Revealer) GetTransitionDuration() uint {
+		c := C.gtk_revealer_get_transition_duration(v.native())
+		return uint(c)
+	}
+
+	// SetTransitionDuration is a wrapper around gtk_revealer_set_transition_duration().
+	func (v *Revealer) SetTransitionDuration(duration uint) {
+		C.gtk_revealer_set_transition_duration(v.native(), C.guint(duration))
+	}
+
+	// GetTransitionType is a wrapper around gtk_revealer_get_transition_type()
+	func (v *Revealer) GetTransitionType() RevealerTransitionType {
+		c := C.gtk_revealer_get_transition_type(v.native())
+		return RevealerTransitionType(c)
+	}
+
+	// SetTransitionType is a wrapper around gtk_revealer_set_transition_type()
+	func (v *Revealer) SetTransitionType(transition RevealerTransitionType) {
+		t := C.GtkRevealerTransitionType(transition)
+		C.gtk_revealer_set_transition_type(v.native(), t)
+	}
+
+	/*
+	* GtkSearchBar
+	*/
+
+	// SearchBar is a representation of GTK's GtkSearchBar.
+	type SearchBar struct {
+		Bin
+	}
+
+	// native returns a pointer to the underlying GtkSearchBar.
+	func (v *SearchBar) native() *C.GtkSearchBar {
+		if v == nil || v.GObject == nil {
+			return nil
+		}
+		p := unsafe.Pointer(v.GObject)
+		return C.toGtkSearchBar(p)
+	}
+
+	func marshalSearchBar(p uintptr) (interface{}, error) {
+		c := C.g_value_get_object((*C.GValue)(unsafe.Pointer(p)))
+		obj := glib.Take(unsafe.Pointer(c))
+		return wrapSearchBar(obj), nil
+	}
+
+	func wrapSearchBar(obj *glib.Object) *SearchBar {
+		return &SearchBar{Bin{Container{Widget{glib.InitiallyUnowned{obj}}}}}
+	}
+
+	// SearchBarNew is a wrapper around gtk_search_bar_new()
+	func SearchBarNew() (*SearchBar, error) {
+		c := C.gtk_search_bar_new()
+		if c == nil {
+			return nil, nilPtrErr
+		}
+		return wrapSearchBar(glib.Take(unsafe.Pointer(c))), nil
+	}
+
+	// ConnectEntry is a wrapper around gtk_search_bar_connect_entry().
+	func (v *SearchBar) ConnectEntry(entry IEntry) {
+		C.gtk_search_bar_connect_entry(v.native(), entry.toEntry())
+	}
+
+	// GetSearchMode is a wrapper around gtk_search_bar_get_search_mode().
+	func (v *SearchBar) GetSearchMode() bool {
+		c := C.gtk_search_bar_get_search_mode(v.native())
+		return gobool(c)
+	}
+
+	// SetSearchMode is a wrapper around gtk_search_bar_set_search_mode().
+	func (v *SearchBar) SetSearchMode(searchMode bool) {
+		C.gtk_search_bar_set_search_mode(v.native(), gbool(searchMode))
+	}
+
+	// GetShowCloseButton is a wrapper arounb gtk_search_bar_get_show_close_button().
+	func (v *SearchBar) GetShowCloseButton() bool {
+		c := C.gtk_search_bar_get_show_close_button(v.native())
+		return gobool(c)
+	}
+
+	// SetShowCloseButton is a wrapper around gtk_search_bar_set_show_close_button()
+	func (v *SearchBar) SetShowCloseButton(visible bool) {
+		C.gtk_search_bar_set_show_close_button(v.native(), gbool(visible))
+	}
+
+	// HandleEvent is a wrapper around gtk_search_bar_handle_event()
+	func (v *SearchBar) HandleEvent(event *gdk.Event) {
+		e := (*C.GdkEvent)(unsafe.Pointer(event.Native()))
+		C.gtk_search_bar_handle_event(v.native(), e)
+	}
+
+	/*
+	* GtkStack
+	*/
+
+	// Stack is a representation of GTK's GtkStack.
+	type Stack struct {
+		Container
+	}
+
+	// native returns a pointer to the underlying GtkStack.
+	func (v *Stack) native() *C.GtkStack {
+		if v == nil || v.GObject == nil {
+			return nil
+		}
+		p := unsafe.Pointer(v.GObject)
+		return C.toGtkStack(p)
+	}
+
+	func marshalStack(p uintptr) (interface{}, error) {
+		c := C.g_value_get_object((*C.GValue)(unsafe.Pointer(p)))
+		obj := glib.Take(unsafe.Pointer(c))
+		return wrapStack(obj), nil
+	}
+
+	func wrapStack(obj *glib.Object) *Stack {
+		return &Stack{Container{Widget{glib.InitiallyUnowned{obj}}}}
+	}
+
+	// StackNew is a wrapper around gtk_stack_new().
+	func StackNew() (*Stack, error) {
+		c := C.gtk_stack_new()
+		if c == nil {
+			return nil, nilPtrErr
+		}
+		return wrapStack(glib.Take(unsafe.Pointer(c))), nil
+	}
+
+	// AddNamed is a wrapper around gtk_stack_add_named().
+	func (v *Stack) AddNamed(child IWidget, name string) {
+		cstr := C.CString(name)
+		defer C.free(unsafe.Pointer(cstr))
+		C.gtk_stack_add_named(v.native(), child.toWidget(), (*C.gchar)(cstr))
+	}
+
+	// AddTitled is a wrapper around gtk_stack_add_titled().
+	func (v *Stack) AddTitled(child IWidget, name, title string) {
+		cName := C.CString(name)
+		defer C.free(unsafe.Pointer(cName))
+		cTitle := C.CString(title)
+		defer C.free(unsafe.Pointer(cTitle))
+		C.gtk_stack_add_titled(v.native(), child.toWidget(), (*C.gchar)(cName),
 		(*C.gchar)(cTitle))
-}
-
-// SetVisibleChild is a wrapper around gtk_stack_set_visible_child().
-func (v *Stack) SetVisibleChild(child IWidget) {
-	C.gtk_stack_set_visible_child(v.native(), child.toWidget())
-}
-
-// GetVisibleChild is a wrapper around gtk_stack_get_visible_child().
-func (v *Stack) GetVisibleChild() *Widget {
-	c := C.gtk_stack_get_visible_child(v.native())
-	if c == nil {
-		return nil
 	}
-	return wrapWidget(glib.Take(unsafe.Pointer(c)))
-}
 
-// SetVisibleChildName is a wrapper around gtk_stack_set_visible_child_name().
-func (v *Stack) SetVisibleChildName(name string) {
-	cstr := C.CString(name)
-	defer C.free(unsafe.Pointer(cstr))
-	C.gtk_stack_set_visible_child_name(v.native(), (*C.gchar)(cstr))
-}
+	// SetVisibleChild is a wrapper around gtk_stack_set_visible_child().
+	func (v *Stack) SetVisibleChild(child IWidget) {
+		C.gtk_stack_set_visible_child(v.native(), child.toWidget())
+	}
 
-// GetVisibleChildName is a wrapper around gtk_stack_get_visible_child_name().
-func (v *Stack) GetVisibleChildName() string {
-	c := C.gtk_stack_get_visible_child_name(v.native())
-	return C.GoString((*C.char)(c))
-}
+	// GetVisibleChild is a wrapper around gtk_stack_get_visible_child().
+	func (v *Stack) GetVisibleChild() *Widget {
+		c := C.gtk_stack_get_visible_child(v.native())
+		if c == nil {
+			return nil
+		}
+		return wrapWidget(glib.Take(unsafe.Pointer(c)))
+	}
 
-// SetVisibleChildFull is a wrapper around gtk_stack_set_visible_child_full().
-func (v *Stack) SetVisibleChildFull(name string, transaction StackTransitionType) {
-	cstr := C.CString(name)
-	defer C.free(unsafe.Pointer(cstr))
-	C.gtk_stack_set_visible_child_full(v.native(), (*C.gchar)(cstr),
+	// SetVisibleChildName is a wrapper around gtk_stack_set_visible_child_name().
+	func (v *Stack) SetVisibleChildName(name string) {
+		cstr := C.CString(name)
+		defer C.free(unsafe.Pointer(cstr))
+		C.gtk_stack_set_visible_child_name(v.native(), (*C.gchar)(cstr))
+	}
+
+	// GetVisibleChildName is a wrapper around gtk_stack_get_visible_child_name().
+	func (v *Stack) GetVisibleChildName() string {
+		c := C.gtk_stack_get_visible_child_name(v.native())
+		return C.GoString((*C.char)(c))
+	}
+
+	// SetVisibleChildFull is a wrapper around gtk_stack_set_visible_child_full().
+	func (v *Stack) SetVisibleChildFull(name string, transaction StackTransitionType) {
+		cstr := C.CString(name)
+		defer C.free(unsafe.Pointer(cstr))
+		C.gtk_stack_set_visible_child_full(v.native(), (*C.gchar)(cstr),
 		C.GtkStackTransitionType(transaction))
 }
 

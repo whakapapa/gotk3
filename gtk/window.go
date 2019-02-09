@@ -1,6 +1,3 @@
-// Same copyright and license as the rest of the files in this project
-// This file contains accelerator related functions and structures
-
 package gtk
 
 // #include <gtk/gtk.h>
@@ -15,8 +12,8 @@ import (
 )
 
 /*
- * GtkWindow
- */
+* GtkWindow
+*/
 
 // Window is a representation of GTK's GtkWindow.
 type Window struct {
@@ -158,7 +155,7 @@ func (v *Window) SetDestroyWithParent(setting bool) {
 // gtk_window_set_hide_titlebar_when_maximized().
 func (v *Window) SetHideTitlebarWhenMaximized(setting bool) {
 	C.gtk_window_set_hide_titlebar_when_maximized(v.native(),
-		gbool(setting))
+	gbool(setting))
 }
 
 // IsActive is a wrapper around gtk_window_is_active().

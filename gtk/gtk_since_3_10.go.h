@@ -16,6 +16,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+
 static GtkHeaderBar *
 toGtkHeaderBar(void *p)
 {
@@ -64,4 +65,3 @@ extern gboolean goListBoxFilterFuncs (GtkListBoxRow *row,
 static inline void _gtk_list_box_set_filter_func(GtkListBox *box, gpointer user_data) {
     gtk_list_box_set_filter_func(box, (GtkListBoxFilterFunc)(goListBoxFilterFuncs), user_data, NULL);
 }
-
