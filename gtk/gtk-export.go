@@ -1,7 +1,7 @@
 package gtk
 
 /*
- #include <gtk/gtk.h>
+#include <gtk/gtk.h>
 */
 import "C"
 import (
@@ -12,11 +12,7 @@ import (
 )
 
 //export substring_match_equal_func
-func substring_match_equal_func(model *C.GtkTreeModel,
-	column C.gint,
-	key *C.gchar,
-	iter *C.GtkTreeIter,
-	data C.gpointer) C.gboolean {
+func substring_match_equal_func(model *C.GtkTreeModel, column C.gint, key *C.gchar, iter *C.GtkTreeIter, data C.gpointer) C.gboolean {
 
 	goModel := &TreeModel{glib.Take(unsafe.Pointer(model))}
 	goIter := &TreeIter{(C.GtkTreeIter)(*iter)}
@@ -37,13 +33,7 @@ func substring_match_equal_func(model *C.GtkTreeModel,
 }
 
 //export goBuilderConnect
-func goBuilderConnect(builder *C.GtkBuilder,
-	object *C.GObject,
-	signal_name *C.gchar,
-	handler_name *C.gchar,
-	connect_object *C.GObject,
-	flags C.GConnectFlags,
-	user_data C.gpointer) {
+func goBuilderConnect(builder *C.GtkBuilder, object *C.GObject, signal_name *C.gchar, handler_name *C.gchar, connect_object *C.GObject, flags C.GConnectFlags, user_data C.gpointer) {
 
 	builderSignals.Lock()
 	signals, ok := builderSignals.m[builder]
@@ -71,8 +61,7 @@ func goBuilderConnect(builder *C.GtkBuilder,
 }
 
 //export goPageSetupDone
-func goPageSetupDone(setup *C.GtkPageSetup,
-	data C.gpointer) {
+func goPageSetupDone(setup *C.GtkPageSetup, data C.gpointer) {
 
 	id := int(uintptr(data))
 
@@ -87,9 +76,7 @@ func goPageSetupDone(setup *C.GtkPageSetup,
 }
 
 //export goPrintSettings
-func goPrintSettings(key *C.gchar,
-	value *C.gchar,
-	userData C.gpointer) {
+func goPrintSettings(key *C.gchar, value *C.gchar, userData C.gpointer) {
 
 	id := int(uintptr(userData))
 
@@ -101,4 +88,17 @@ func goPrintSettings(key *C.gchar,
 
 	r.fn(C.GoString((*C.char)(key)), C.GoString((*C.char)(value)), r.userData)
 
+}
+
+//export goListBoxFilterFuncs
+func goListBoxFilterFuncs(row *C.GtkListBoxRow, userData C.gpointer) C.gboolean {
+	id := int(uintptr(userData))
+
+	listBoxFilterFuncRegistry.Lock()
+	r := listBoxFilterFuncRegistry.m[id]
+	// TODO: figure out a way to determine when we can clean up
+	//delete(printSettingsCallbackRegistry.m, id)
+	listBoxFilterFuncRegistry.Unlock()
+
+	return gbool(r.fn(wrapListBoxRow(glib.Take(unsafe.Pointer(row))), r.userData))
 }

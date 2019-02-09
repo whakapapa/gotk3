@@ -26,8 +26,8 @@ func init() {
 }
 
 /*
- * GtkAppChooser
- */
+* GtkAppChooser
+*/
 
 // AppChooser is a representation of GTK's GtkAppChooser GInterface.
 type AppChooser struct {
@@ -84,8 +84,8 @@ func (v *AppChooser) Refresh() {
 }
 
 /*
- * GtkAppChooserButton
- */
+* GtkAppChooserButton
+*/
 
 // AppChooserButton is a representation of GTK's GtkAppChooserButton.
 type AppChooserButton struct {
@@ -182,8 +182,8 @@ func (v *AppChooserButton) SetHeading(heading string) {
 }
 
 /*
- * GtkAppChooserWidget
- */
+* GtkAppChooserWidget
+*/
 
 // AppChooserWidget is a representation of GTK's GtkAppChooserWidget.
 type AppChooserWidget struct {
@@ -295,8 +295,8 @@ func (v *AppChooserWidget) SetDefaultText(text string) {
 }
 
 /*
- * GtkAppChooserDialog
- */
+* GtkAppChooserDialog
+*/
 
 // AppChooserDialog is a representation of GTK's GtkAppChooserDialog.
 type AppChooserDialog struct {
@@ -330,49 +330,49 @@ func wrapAppChooserDialog(obj *glib.Object) *AppChooserDialog {
 // TODO: Uncomment when gio builds successfully
 // AppChooserDialogNew() is a wrapper around gtk_app_chooser_dialog_new().
 // func AppChooserDialogNew(parent *Window, flags DialogFlags, file *gio.File) (*AppChooserDialog, error) {
-// 	var gfile *C.GFile
-// 	if file != nil {
-// 		gfile = (*C.GFile)(unsafe.Pointer(file.Native()))
-// 	}
-// 	c := C.gtk_app_chooser_dialog_new(parent.native(), C.GtkDialogFlags(flags), gfile)
-// 	if c == nil {
-// 		return nil, nilPtrErr
-// 	}
-// 	return wrapAppChooserDialog(glib.Take(unsafe.Pointer(c))), nil
-// }
+	// 	var gfile *C.GFile
+	// 	if file != nil {
+		// 		gfile = (*C.GFile)(unsafe.Pointer(file.Native()))
+		// 	}
+		// 	c := C.gtk_app_chooser_dialog_new(parent.native(), C.GtkDialogFlags(flags), gfile)
+		// 	if c == nil {
+			// 		return nil, nilPtrErr
+			// 	}
+			// 	return wrapAppChooserDialog(glib.Take(unsafe.Pointer(c))), nil
+			// }
 
-// AppChooserDialogNewForContentType() is a wrapper around gtk_app_chooser_dialog_new_for_content_type().
-func AppChooserDialogNewForContentType(parent *Window, flags DialogFlags, content_type string) (*AppChooserDialog, error) {
-	cstr := C.CString(content_type)
-	defer C.free(unsafe.Pointer(cstr))
-	c := C.gtk_app_chooser_dialog_new_for_content_type(parent.native(), C.GtkDialogFlags(flags), (*C.gchar)(cstr))
-	if c == nil {
-		return nil, nilPtrErr
-	}
-	return wrapAppChooserDialog(glib.Take(unsafe.Pointer(c))), nil
-}
+			// AppChooserDialogNewForContentType() is a wrapper around gtk_app_chooser_dialog_new_for_content_type().
+			func AppChooserDialogNewForContentType(parent *Window, flags DialogFlags, content_type string) (*AppChooserDialog, error) {
+				cstr := C.CString(content_type)
+				defer C.free(unsafe.Pointer(cstr))
+				c := C.gtk_app_chooser_dialog_new_for_content_type(parent.native(), C.GtkDialogFlags(flags), (*C.gchar)(cstr))
+				if c == nil {
+					return nil, nilPtrErr
+				}
+				return wrapAppChooserDialog(glib.Take(unsafe.Pointer(c))), nil
+			}
 
-// GetWidget() is a wrapper around gtk_app_chooser_dialog_get_widget().
-func (v *AppChooserDialog) GetWidget() *AppChooserWidget {
-	c := C.gtk_app_chooser_dialog_get_widget(v.native())
-	return wrapAppChooserWidget(glib.Take(unsafe.Pointer(c)))
-}
+			// GetWidget() is a wrapper around gtk_app_chooser_dialog_get_widget().
+			func (v *AppChooserDialog) GetWidget() *AppChooserWidget {
+				c := C.gtk_app_chooser_dialog_get_widget(v.native())
+				return wrapAppChooserWidget(glib.Take(unsafe.Pointer(c)))
+			}
 
-// GetHeading() is a wrapper around gtk_app_chooser_dialog_get_heading().
-// In case when gtk_app_chooser_dialog_get_heading() returns a nil string,
-// GetHeading() returns a non-nil error.
-func (v *AppChooserDialog) GetHeading() (string, error) {
-	cstr := C.gtk_app_chooser_dialog_get_heading(v.native())
-	if cstr == nil {
-		return "", nilPtrErr
-	}
-	defer C.free(unsafe.Pointer(cstr))
-	return C.GoString((*C.char)(cstr)), nil
-}
+			// GetHeading() is a wrapper around gtk_app_chooser_dialog_get_heading().
+			// In case when gtk_app_chooser_dialog_get_heading() returns a nil string,
+			// GetHeading() returns a non-nil error.
+			func (v *AppChooserDialog) GetHeading() (string, error) {
+				cstr := C.gtk_app_chooser_dialog_get_heading(v.native())
+				if cstr == nil {
+					return "", nilPtrErr
+				}
+				defer C.free(unsafe.Pointer(cstr))
+				return C.GoString((*C.char)(cstr)), nil
+			}
 
-// SetHeading() is a wrapper around gtk_app_chooser_dialog_set_heading().
-func (v *AppChooserDialog) SetHeading(heading string) {
-	cstr := C.CString(heading)
-	defer C.free(unsafe.Pointer(cstr))
-	C.gtk_app_chooser_dialog_set_heading(v.native(), (*C.gchar)(cstr))
-}
+			// SetHeading() is a wrapper around gtk_app_chooser_dialog_set_heading().
+			func (v *AppChooserDialog) SetHeading(heading string) {
+				cstr := C.CString(heading)
+				defer C.free(unsafe.Pointer(cstr))
+				C.gtk_app_chooser_dialog_set_heading(v.native(), (*C.gchar)(cstr))
+			}

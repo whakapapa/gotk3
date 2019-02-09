@@ -23,8 +23,8 @@ func init() {
 }
 
 /*
- * GtkFontChooser
- */
+* GtkFontChooser
+*/
 
 // FontChooser is a representation of GTK's GtkFontChooser GInterface.
 type FontChooser struct {
@@ -93,8 +93,8 @@ func (v *FontChooser) SetFont(font string) {
 //PangoFontMap *	gtk_font_chooser_get_font_map ()
 
 /*
- * GtkFontButton
- */
+* GtkFontButton
+*/
 
 // FontButton is a representation of GTK's GtkFontButton.
 type FontButton struct {

@@ -99,19 +99,19 @@ func (v *Actionable) SetDetailedActionName(detailed_action_name string) {
 /*func (v *Actionable) SetActionTargetValue(value *glib.Variant) {
 	// FIXME ToGVariant does not work here
 	C.gtk_actionable_set_action_target_value(v.native(), value.ToGVariant())
-}*/
+	}*/
 
-// GetActionTargetValue is a wrapper around gtk_actionable_get_action_target_value().
-// Since 3.4
-/*func (v *Actionable) GetActionTargetValue() (*glib.Variant, error) {
-	// FIXME: newVariant is not exported from glib
-	return newVariant(C.gtk_actionable_get_action_target_value(v.native(), cstr))
-}*/
+	// GetActionTargetValue is a wrapper around gtk_actionable_get_action_target_value().
+	// Since 3.4
+	/*func (v *Actionable) GetActionTargetValue() (*glib.Variant, error) {
+		// FIXME: newVariant is not exported from glib
+		return newVariant(C.gtk_actionable_get_action_target_value(v.native(), cstr))
+		}*/
 
-/*
-// Since 3.4
-void
-gtk_actionable_set_action_target (GtkActionable *actionable,
-                                  const gchar *format_string,
-								  ...);
-*/
+		/*
+		// Since 3.4
+		void
+		gtk_actionable_set_action_target (GtkActionable *actionable,
+			const gchar *format_string,
+			...);
+			*/

@@ -21,8 +21,8 @@ func init() {
 }
 
 /*
- * GtkAboutDialog
- */
+* GtkAboutDialog
+*/
 
 // AboutDialog is a representation of GTK's GtkAboutDialog.
 type AboutDialog struct {

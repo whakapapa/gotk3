@@ -1,21 +1,3 @@
-/*
- * Copyright (c) 2013-2014 Conformal Systems <info@conformal.com>
- *
- * This file originated from: http://opensource.conformal.com/
- *
- * Permission to use, copy, modify, and distribute this software for any
- * purpose with or without fee is hereby granted, provided that the above
- * copyright notice and this permission notice appear in all copies.
- *
- * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
- * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
- * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
- * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
- * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
- * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
- * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- */
-
 package gtk
 
 import (
@@ -647,28 +629,28 @@ func TestBuilder(t *testing.T) {
 	}
 
 	str := `
-<interface>
-  <object class="GtkDialog" id="dialog1">
-    <child internal-child="vbox">
-      <object class="GtkBox" id="vbox1">
-        <property name="border-width">10</property>
-        <child internal-child="action_area">
-          <object class="GtkButtonBox" id="hbuttonbox1">
-            <property name="border-width">20</property>
-            <child>
-              <object class="GtkButton" id="ok_button">
-                <property name="label">gtk-ok</property>
-                <property name="use-stock">TRUE</property>
-                <signal name="clicked" handler="ok_button_clicked"/>
-              </object>
-            </child>
-          </object>
-        </child>
-      </object>
-    </child>
-  </object>
-</interface>
-`
+	<interface>
+	<object class="GtkDialog" id="dialog1">
+	<child internal-child="vbox">
+	<object class="GtkBox" id="vbox1">
+	<property name="border-width">10</property>
+	<child internal-child="action_area">
+	<object class="GtkButtonBox" id="hbuttonbox1">
+	<property name="border-width">20</property>
+	<child>
+	<object class="GtkButton" id="ok_button">
+	<property name="label">gtk-ok</property>
+	<property name="use-stock">TRUE</property>
+	<signal name="clicked" handler="ok_button_clicked"/>
+	</object>
+	</child>
+	</object>
+	</child>
+	</object>
+	</child>
+	</object>
+	</interface>
+	`
 
 	err = builder.AddFromString(str)
 	if err != nil {

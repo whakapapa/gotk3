@@ -21,8 +21,8 @@ func init() {
 }
 
 /*
- * GtkFixed
- */
+* GtkFixed
+*/
 
 // Fixed is a representation of GTK's GtkFixed.
 type Fixed struct {

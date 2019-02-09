@@ -1,6 +1,3 @@
-// Same copyright and license as the rest of the files in this project
-// This file contains style related functions and structures
-
 package gtk
 
 // #include <gtk/gtk.h>
@@ -13,8 +10,8 @@ import (
 )
 
 /*
- * GtkApplicationWindow
- */
+* GtkApplicationWindow
+*/
 
 // ApplicationWindow is a representation of GTK's GtkApplicationWindow.
 type ApplicationWindow struct {

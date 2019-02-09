@@ -1,5 +1,3 @@
-// Same copyright and license as the rest of the files in this project
-
 package gtk
 
 import "testing"

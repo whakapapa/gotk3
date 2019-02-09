@@ -1,6 +1,3 @@
-// Same copyright and license as the rest of the files in this project
-// This file contains accelerator related functions and structures
-
 package gtk
 
 // #include <gtk/gtk.h>
@@ -69,8 +66,8 @@ func AcceleratorSetDefaultModMask(mods gdk.ModifierType) {
 }
 
 /*
- * GtkAccelGroup
- */
+* GtkAccelGroup
+*/
 
 // AccelGroup is a representation of GTK's GtkAccelGroup.
 type AccelGroup struct {
@@ -195,8 +192,8 @@ func AccelGroupsFromObject(obj *glib.Object) *glib.SList {
 }
 
 /*
- * GtkAccelMap
- */
+* GtkAccelMap
+*/
 
 // AccelMap is a representation of GTK's GtkAccelMap.
 type AccelMap struct {
@@ -384,19 +381,19 @@ func (v *Widget) AddAccelerator(signal string, group *AccelGroup, key uint, mods
 	defer C.free(unsafe.Pointer(csignal))
 
 	C.gtk_widget_add_accelerator(v.native(),
-		csignal,
-		group.native(),
-		C.guint(key),
-		C.GdkModifierType(mods),
-		C.GtkAccelFlags(flags))
+	csignal,
+	group.native(),
+	C.guint(key),
+	C.GdkModifierType(mods),
+	C.GtkAccelFlags(flags))
 }
 
 // RemoveAccelerator is a wrapper around gtk_widget_remove_accelerator().
 func (v *Widget) RemoveAccelerator(group *AccelGroup, key uint, mods gdk.ModifierType) bool {
 	return gobool(C.gtk_widget_remove_accelerator(v.native(),
-		group.native(),
-		C.guint(key),
-		C.GdkModifierType(mods)))
+	group.native(),
+	C.guint(key),
+	C.GdkModifierType(mods)))
 }
 
 // SetAccelPath is a wrapper around gtk_widget_set_accel_path().

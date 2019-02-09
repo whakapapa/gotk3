@@ -23,8 +23,8 @@ func init() {
 }
 
 /*
- * GtkComboBox
- */
+* GtkComboBox
+*/
 
 // ComboBox is a representation of GTK's GtkComboBox.
 type ComboBox struct {
@@ -159,8 +159,8 @@ func (v *ComboBox) Popdown() {
 }
 
 /*
- * GtkComboBoxText
- */
+* GtkComboBoxText
+*/
 
 // ComboBoxText is a representation of GTK's GtkComboBoxText.
 type ComboBoxText struct {

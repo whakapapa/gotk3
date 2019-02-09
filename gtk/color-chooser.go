@@ -23,8 +23,8 @@ func init() {
 }
 
 /*
- * GtkColorChooser
- */
+* GtkColorChooser
+*/
 
 // ColorChooser is a representation of GTK's GtkColorChooser GInterface.
 type ColorChooser struct {
@@ -104,8 +104,8 @@ func (v *ColorChooser) AddPalette(orientation Orientation, colors_per_line int, 
 }
 
 /*
- * GtkColorChooserDialog
- */
+* GtkColorChooserDialog
+*/
 
 // ColorChooserDialog is a representation of GTK's GtkColorChooserDialog.
 type ColorChooserDialog struct {
