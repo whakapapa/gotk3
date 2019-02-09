@@ -44,8 +44,8 @@ func NewPatternLinear(x0, y0, x1, y1 float64) (*Pattern, error) {
 // NewPatternRadial is a wrapper around cairo_pattern_create_radial().
 func NewPatternRadial(x0, y0, r0, x1, y1, r1 float64) (*Pattern, error) {
 	c := C.cairo_pattern_create_radial(C.double(x0), C.double(y0), C.double(r0),
-		C.double(x1), C.double(y1), C.double(r1))
-	return newPatternFromNative(c)
+	C.double(x1), C.double(y1), C.double(r1))
+return newPatternFromNative(c)
 }
 
 func newPatternFromNative(patternNative *C.cairo_pattern_t) (*Pattern, error) {
@@ -100,13 +100,13 @@ func (v *Pattern) Status() Status {
 // AddColorStopRGB is a wrapper around cairo_pattern_add_color_stop_rgb().
 func (v *Pattern) AddColorStopRGB(offset, red, green, blue float64) error {
 	C.cairo_pattern_add_color_stop_rgb(v.native(), C.double(offset),
-		C.double(red), C.double(green), C.double(blue))
-	return v.Status().ToError()
+	C.double(red), C.double(green), C.double(blue))
+return v.Status().ToError()
 }
 
 // AddColorStopRGBA is a wrapper around cairo_pattern_add_color_stop_rgba().
 func (v *Pattern) AddColorStopRGBA(offset, red, green, blue, alpha float64) error {
 	C.cairo_pattern_add_color_stop_rgba(v.native(), C.double(offset),
-		C.double(red), C.double(green), C.double(blue), C.double(alpha))
-	return v.Status().ToError()
+	C.double(red), C.double(green), C.double(blue), C.double(alpha))
+return v.Status().ToError()
 }

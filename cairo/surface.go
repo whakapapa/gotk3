@@ -16,8 +16,8 @@ import (
 // TODO(jrick) GetUserData (depends on UserDataKey)
 
 /*
- * cairo_surface_t
- */
+* cairo_surface_t
+*/
 
 // Surface is a representation of Cairo's cairo_surface_t.
 type Surface struct {
@@ -42,10 +42,10 @@ func NewSurfaceFromPNG(fileName string) (*Surface, error) {
 // CreateImageSurface is a wrapper around cairo_image_surface_create().
 func CreateImageSurface(format Format, width, height int) *Surface {
 	c := C.cairo_image_surface_create(C.cairo_format_t(format),
-		C.int(width), C.int(height))
-	s := wrapSurface(c)
-	runtime.SetFinalizer(s, (*Surface).destroy)
-	return s
+	C.int(width), C.int(height))
+s := wrapSurface(c)
+runtime.SetFinalizer(s, (*Surface).destroy)
+return s
 }
 
 /// Create a new PDF surface.
@@ -114,10 +114,10 @@ func (v *Surface) Close() {
 // CreateSimilar is a wrapper around cairo_surface_create_similar().
 func (v *Surface) CreateSimilar(content Content, width, height int) *Surface {
 	c := C.cairo_surface_create_similar(v.native(),
-		C.cairo_content_t(content), C.int(width), C.int(height))
-	s := wrapSurface(c)
-	runtime.SetFinalizer(s, (*Surface).destroy)
-	return s
+	C.cairo_content_t(content), C.int(width), C.int(height))
+s := wrapSurface(c)
+runtime.SetFinalizer(s, (*Surface).destroy)
+return s
 }
 
 // TODO cairo_surface_create_similar_image (since 1.12)
@@ -125,10 +125,10 @@ func (v *Surface) CreateSimilar(content Content, width, height int) *Surface {
 // CreateForRectangle is a wrapper around cairo_surface_create_for_rectangle().
 func (v *Surface) CreateForRectangle(x, y, width, height float64) *Surface {
 	c := C.cairo_surface_create_for_rectangle(v.native(), C.double(x),
-		C.double(y), C.double(width), C.double(height))
-	s := wrapSurface(c)
-	runtime.SetFinalizer(s, (*Surface).destroy)
-	return s
+	C.double(y), C.double(width), C.double(height))
+s := wrapSurface(c)
+runtime.SetFinalizer(s, (*Surface).destroy)
+return s
 }
 
 // reference is a wrapper around cairo_surface_reference().
@@ -169,7 +169,7 @@ func (v *Surface) MarkDirty() {
 // MarkDirtyRectangle is a wrapper around cairo_surface_mark_dirty_rectangle().
 func (v *Surface) MarkDirtyRectangle(x, y, width, height int) {
 	C.cairo_surface_mark_dirty_rectangle(v.native(), C.int(x), C.int(y),
-		C.int(width), C.int(height))
+	C.int(width), C.int(height))
 }
 
 // SetDeviceOffset is a wrapper around cairo_surface_set_device_offset().
@@ -188,7 +188,7 @@ func (v *Surface) GetDeviceOffset() (x, y float64) {
 // cairo_surface_set_fallback_resolution().
 func (v *Surface) SetFallbackResolution(xPPI, yPPI float64) {
 	C.cairo_surface_set_fallback_resolution(v.native(), C.double(xPPI),
-		C.double(yPPI))
+	C.double(yPPI))
 }
 
 // GetFallbackResolution is a wrapper around

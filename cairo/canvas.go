@@ -133,13 +133,13 @@ func (v *Context) SetSource(p *Pattern) {
 // SetSourceRGB is a wrapper around cairo_set_source_rgb().
 func (v *Context) SetSourceRGB(red, green, blue float64) {
 	C.cairo_set_source_rgb(v.native(), C.double(red), C.double(green),
-		C.double(blue))
+	C.double(blue))
 }
 
 // SetSourceRGBA is a wrapper around cairo_set_source_rgba().
 func (v *Context) SetSourceRGBA(red, green, blue, alpha float64) {
 	C.cairo_set_source_rgba(v.native(), C.double(red), C.double(green),
-		C.double(blue), C.double(alpha))
+	C.double(blue), C.double(alpha))
 }
 
 // TODO(jrick) SetSource (depends on Pattern)
@@ -147,7 +147,7 @@ func (v *Context) SetSourceRGBA(red, green, blue, alpha float64) {
 // SetSourceSurface is a wrapper around cairo_set_source_surface().
 func (v *Context) SetSourceSurface(surface *Surface, x, y float64) {
 	C.cairo_set_source_surface(v.native(), surface.native(), C.double(x),
-		C.double(y))
+	C.double(y))
 }
 
 // TODO(jrick) GetSource (depends on Pattern)
@@ -168,7 +168,7 @@ func (v *Context) SetDash(dashes []float64, offset float64) {
 	header := (*reflect.SliceHeader)(unsafe.Pointer(&dashes))
 	cdashes := (*C.double)(unsafe.Pointer(header.Data))
 	C.cairo_set_dash(v.native(), cdashes, C.int(header.Len),
-		C.double(offset))
+	C.double(offset))
 }
 
 // GetDashCount is a wrapper around cairo_get_dash_count().
@@ -371,7 +371,7 @@ func (v *Context) InFill(x, y float64) bool {
 // MaskSurface is a wrapper around cairo_mask_surface().
 func (v *Context) MaskSurface(surface *Surface, surfaceX, surfaceY float64) {
 	C.cairo_mask_surface(v.native(), surface.native(), C.double(surfaceX),
-		C.double(surfaceY))
+	C.double(surfaceY))
 }
 
 // Paint is a wrapper around cairo_paint().

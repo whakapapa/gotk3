@@ -86,13 +86,13 @@ func (m *Matrix) Multiply(a, b Matrix) {
 // TransformDistance ...
 func (m *Matrix) TransformDistance(dx, dy float64) (float64, float64) {
 	C.cairo_matrix_transform_distance(m.native(),
-		(*C.double)(unsafe.Pointer(&dx)), (*C.double)(unsafe.Pointer(&dy)))
+	(*C.double)(unsafe.Pointer(&dx)), (*C.double)(unsafe.Pointer(&dy)))
 	return dx, dy
 }
 
 // TransformPoint ...
 func (m *Matrix) TransformPoint(x, y float64) (float64, float64) {
 	C.cairo_matrix_transform_point(m.native(),
-		(*C.double)(unsafe.Pointer(&x)), (*C.double)(unsafe.Pointer(&y)))
+	(*C.double)(unsafe.Pointer(&x)), (*C.double)(unsafe.Pointer(&y)))
 	return x, y
 }
