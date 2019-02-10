@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/whakapapa/gtkgo/glib"
+	"github.com/whakapapa/gtkgo/gdk"
 )
 
 /*
