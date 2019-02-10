@@ -774,11 +774,6 @@ static GtkStackSidebar *toGtkStackSidebar(void *p)
 	return (GTK_STACK_SIDEBAR(p));
 }
 
-static GtkFileChooser *toGtkFileChooser(void *p)
-{
-	return (GTK_FILE_CHOOSER(p));
-}
-
 static GtkFileChooserNative *toGtkFileChooserNative(void *p)
 {
 	return (GTK_FILE_CHOOSER_NATIVE(p));
