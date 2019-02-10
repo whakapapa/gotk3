@@ -7,8 +7,8 @@ import "C"
 import "unsafe"
 
 /*
- * Linked Lists
- */
+* Linked Lists
+*/
 
 // List is a representation of Glib's GList.
 type List struct {

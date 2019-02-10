@@ -35,9 +35,7 @@ func marshalBinding(p uintptr) (interface{}, error) {
 // Creates a binding between source property on source and target property on
 // target . Whenever the source property is changed the target_property is
 // updated using the same value.
-func BindProperty(source *Object, sourceProperty string,
-	target *Object, targetProperty string,
-	flags BindingFlags) *Binding {
+func BindProperty(source *Object, sourceProperty string, target *Object, targetProperty string, flags BindingFlags) *Binding {
 	srcStr := (*C.gchar)(C.CString(sourceProperty))
 	defer C.free(unsafe.Pointer(srcStr))
 	tgtStr := (*C.gchar)(C.CString(targetProperty))

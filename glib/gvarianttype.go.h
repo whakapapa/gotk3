@@ -1,8 +1,3 @@
-// Same copyright and license as the rest of the files in this project
-
-//GVariant : GVariant — strongly typed value datatype
-// https://developer.gnome.org/glib/2.26/glib-GVariant.html
-
 #ifndef __GVARIANTTYPE_GO_H__
 #define __GVARIANTTYPE_GO_H__
 

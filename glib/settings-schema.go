@@ -74,22 +74,22 @@ func toGoStringArray(c **C.gchar) []string {
 
 // // ListChildren() is a wrapper around g_settings_schema_list_children().
 // func (v *SettingsSchema) ListChildren() []string {
-// 	return toGoStringArray(C.g_settings_schema_list_children(v.native()))
-// }
+	// 	return toGoStringArray(C.g_settings_schema_list_children(v.native()))
+	// }
 
-// // ListKeys() is a wrapper around g_settings_schema_list_keys().
-// func (v *SettingsSchema) ListKeys() []string {
-// 	return toGoStringArray(C.g_settings_schema_list_keys(v.native()))
-// }
+	// // ListKeys() is a wrapper around g_settings_schema_list_keys().
+	// func (v *SettingsSchema) ListKeys() []string {
+		// 	return toGoStringArray(C.g_settings_schema_list_keys(v.native()))
+		// }
 
-// const GVariantType * 	g_settings_schema_key_get_value_type ()
-// GVariant * 	g_settings_schema_key_get_default_value ()
-// GVariant * 	g_settings_schema_key_get_range ()
-// gboolean 	g_settings_schema_key_range_check ()
-// const gchar * 	g_settings_schema_key_get_name ()
-// const gchar * 	g_settings_schema_key_get_summary ()
-// const gchar * 	g_settings_schema_key_get_description ()
+		// const GVariantType * 	g_settings_schema_key_get_value_type ()
+		// GVariant * 	g_settings_schema_key_get_default_value ()
+		// GVariant * 	g_settings_schema_key_get_range ()
+		// gboolean 	g_settings_schema_key_range_check ()
+		// const gchar * 	g_settings_schema_key_get_name ()
+		// const gchar * 	g_settings_schema_key_get_summary ()
+		// const gchar * 	g_settings_schema_key_get_description ()
 
-// GSettingsSchemaKey * 	g_settings_schema_get_key ()
-// GSettingsSchemaKey * 	g_settings_schema_key_ref ()
-// void 	g_settings_schema_key_unref ()
+		// GSettingsSchemaKey * 	g_settings_schema_get_key ()
+		// GSettingsSchemaKey * 	g_settings_schema_key_ref ()
+		// void 	g_settings_schema_key_unref ()

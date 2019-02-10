@@ -94,24 +94,7 @@ func (v *Application) SetFlags(flags ApplicationFlags) {
 	C.g_application_set_flags(v.native(), C.GApplicationFlags(flags))
 }
 
-// Only available in GLib 2.42+
-// // GetResourceBasePath is a wrapper around g_application_get_resource_base_path().
-// func (v *Application) GetResourceBasePath() string {
-// 	c := C.g_application_get_resource_base_path(v.native())
 
-// 	return C.GoString((*C.char)(c))
-// }
-
-// Only available in GLib 2.42+
-// // SetResourceBasePath is a wrapper around g_application_set_resource_base_path().
-// func (v *Application) SetResourceBasePath(bp string) {
-// 	cstr1 := (*C.gchar)(C.CString(bp))
-// 	defer C.free(unsafe.Pointer(cstr1))
-
-// 	C.g_application_set_resource_base_path(v.native(), cstr1)
-// }
-
-// GetDbusObjectPath is a wrapper around g_application_get_dbus_object_path().
 func (v *Application) GetDbusObjectPath() string {
 	c := C.g_application_get_dbus_object_path(v.native())
 
@@ -201,19 +184,3 @@ func (v *Application) Run(args []string) int {
 
 	return int(C.g_application_run(v.native(), C.int(len(args)), cargs))
 }
-
-// Only available in GLib 2.44+
-// // GetIsBusy is a wrapper around g_application_get_is_busy().
-// func (v *Application) GetIsBusy() bool {
-// 	return gobool(C.g_application_get_is_busy(v.native()))
-// }
-
-// void 	g_application_bind_busy_property ()
-// void 	g_application_unbind_busy_property ()
-// gboolean 	g_application_register () // requires GCancellable
-// void 	g_application_set_action_group () // Deprecated since 2.32
-// GDBusConnection * 	g_application_get_dbus_connection () // No support for GDBusConnection
-// void 	g_application_open () // Needs GFile
-// void 	g_application_add_main_option_entries () //Needs GOptionEntry
-// void 	g_application_add_main_option () //Needs GOptionFlags and GOptionArg
-// void 	g_application_add_option_group () // Needs GOptionGroup

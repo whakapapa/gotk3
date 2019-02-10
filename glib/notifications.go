@@ -12,11 +12,11 @@ import "unsafe"
 // type NotificationPriority int
 
 // const (
-// 	NOTIFICATION_PRIORITY_NORMAL NotificationPriority = C.G_NOTIFICATION_PRIORITY_NORMAL
-// 	NOTIFICATION_PRIORITY_LOW    NotificationPriority = C.G_NOTIFICATION_PRIORITY_LOW
-// 	NOTIFICATION_PRIORITY_HIGH   NotificationPriority = C.G_NOTIFICATION_PRIORITY_HIGH
-// 	NOTIFICATION_PRIORITY_URGENT NotificationPriority = C.G_NOTIFICATION_PRIORITY_URGENT
-// )
+	// 	NOTIFICATION_PRIORITY_NORMAL NotificationPriority = C.G_NOTIFICATION_PRIORITY_NORMAL
+	// 	NOTIFICATION_PRIORITY_LOW    NotificationPriority = C.G_NOTIFICATION_PRIORITY_LOW
+	// 	NOTIFICATION_PRIORITY_HIGH   NotificationPriority = C.G_NOTIFICATION_PRIORITY_HIGH
+	// 	NOTIFICATION_PRIORITY_URGENT NotificationPriority = C.G_NOTIFICATION_PRIORITY_URGENT
+	// )
 
 // Notification is a representation of GNotification.
 type Notification struct {
@@ -75,31 +75,31 @@ func (v *Notification) SetBody(body string) {
 // Only available from 2.42
 // // SetPriority is a wrapper around g_notification_set_priority().
 // func (v *Notification) SetPriority(prio NotificationPriority) {
-// 	C.g_notification_set_priority(v.native(), C.GNotificationPriority(prio))
-// }
+	// 	C.g_notification_set_priority(v.native(), C.GNotificationPriority(prio))
+	// }
 
-// SetDefaultAction is a wrapper around g_notification_set_default_action().
-func (v *Notification) SetDefaultAction(detailedAction string) {
-	cstr1 := (*C.gchar)(C.CString(detailedAction))
-	defer C.free(unsafe.Pointer(cstr1))
+	// SetDefaultAction is a wrapper around g_notification_set_default_action().
+	func (v *Notification) SetDefaultAction(detailedAction string) {
+		cstr1 := (*C.gchar)(C.CString(detailedAction))
+		defer C.free(unsafe.Pointer(cstr1))
 
-	C.g_notification_set_default_action(v.native(), cstr1)
-}
+		C.g_notification_set_default_action(v.native(), cstr1)
+	}
 
-// AddButton is a wrapper around g_notification_add_button().
-func (v *Notification) AddButton(label, detailedAction string) {
-	cstr1 := (*C.gchar)(C.CString(label))
-	defer C.free(unsafe.Pointer(cstr1))
+	// AddButton is a wrapper around g_notification_add_button().
+	func (v *Notification) AddButton(label, detailedAction string) {
+		cstr1 := (*C.gchar)(C.CString(label))
+		defer C.free(unsafe.Pointer(cstr1))
 
-	cstr2 := (*C.gchar)(C.CString(detailedAction))
-	defer C.free(unsafe.Pointer(cstr2))
+		cstr2 := (*C.gchar)(C.CString(detailedAction))
+		defer C.free(unsafe.Pointer(cstr2))
 
-	C.g_notification_add_button(v.native(), cstr1, cstr2)
-}
+		C.g_notification_add_button(v.native(), cstr1, cstr2)
+	}
 
-// void 	g_notification_set_default_action_and_target () // requires varargs
-// void 	g_notification_set_default_action_and_target_value () // requires variant
-// void 	g_notification_add_button_with_target () // requires varargs
-// void 	g_notification_add_button_with_target_value () //requires variant
-// void 	g_notification_set_urgent () // Deprecated, so not implemented
-// void 	g_notification_set_icon () // Requires support for GIcon, which we don't have yet.
+	// void 	g_notification_set_default_action_and_target () // requires varargs
+	// void 	g_notification_set_default_action_and_target_value () // requires variant
+	// void 	g_notification_add_button_with_target () // requires varargs
+	// void 	g_notification_add_button_with_target_value () //requires variant
+	// void 	g_notification_set_urgent () // Deprecated, so not implemented
+	// void 	g_notification_set_icon () // Requires support for GIcon, which we don't have yet.

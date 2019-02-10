@@ -1,8 +1,3 @@
-// Same copyright and license as the rest of the files in this project
-
-// GVariant : GVariant — strongly typed value datatype
-// https://developer.gnome.org/glib/2.26/glib-GVariant.html
-
 package glib
 
 // #include <glib.h>
@@ -13,8 +8,8 @@ import "C"
 import "unsafe"
 
 /*
- * GVariantBuilder
- */
+* GVariantBuilder
+*/
 
 // VariantBuilder is a representation of GLib's VariantBuilder.
 type VariantBuilder struct {

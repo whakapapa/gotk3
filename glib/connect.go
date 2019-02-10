@@ -11,8 +11,8 @@ import (
 )
 
 /*
- * Events
- */
+* Events
+*/
 
 type SignalHandle uint
 
@@ -32,7 +32,7 @@ func (v *Object) connectClosure(after bool, detailedSignal string, f interface{}
 	C._g_closure_add_finalize_notifier(closure)
 
 	c := C.g_signal_connect_closure(C.gpointer(v.native()),
-		(*C.gchar)(cstr), closure, gbool(after))
+	(*C.gchar)(cstr), closure, gbool(after))
 	handle := SignalHandle(c)
 
 	// Map the signal handle to the closure.
