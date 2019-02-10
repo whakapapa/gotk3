@@ -2,7 +2,7 @@ package gtk
 
 // #include <stdlib.h>
 // #include <gtk/gtk.h>
-// #include "gtk_since_3_10.go.h"
+// #include "gtk.go.h"
 import "C"
 import (
 	"unsafe"
