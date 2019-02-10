@@ -1,5 +1,3 @@
-// Same copyright and license as the rest of the files in this project
-
 package gtk
 
 // #include <gtk/gtk.h>
@@ -8,8 +6,8 @@ import "C"
 import (
 	"unsafe"
 
-	"github.com/gotk3/gotk3/gdk"
-	"github.com/gotk3/gotk3/glib"
+	"github.com/whakapapa/gtkgo/gdk"
+	"github.com/whakapapa/gtkgo/glib"
 )
 
 // TextWindowType is a representation of GTK's GtkTextWindowType.
@@ -25,8 +23,8 @@ const (
 )
 
 /*
- * GtkTextView
- */
+* GtkTextView
+*/
 
 // TextView is a representation of GTK's GtkTextView
 type TextView struct {
@@ -227,7 +225,7 @@ func (v *TextView) GetInputHints() InputHints {
 // SetInputPurpose is a wrapper around gtk_text_view_set_input_purpose().
 func (v *TextView) SetInputPurpose(purpose InputPurpose) {
 	C.gtk_text_view_set_input_purpose(v.native(),
-		C.GtkInputPurpose(purpose))
+	C.GtkInputPurpose(purpose))
 }
 
 // GetInputPurpose is a wrapper around gtk_text_view_get_input_purpose().

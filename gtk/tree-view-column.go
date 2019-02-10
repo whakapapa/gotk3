@@ -1,6 +1,3 @@
-// Same copyright and license as the rest of the files in this project
-// This file contains accelerator related functions and structures
-
 package gtk
 
 // #include <gtk/gtk.h>
@@ -9,12 +6,12 @@ import "C"
 import (
 	"unsafe"
 
-	"github.com/gotk3/gotk3/glib"
+	"github.com/whakapapa/gtkgo/glib"
 )
 
 /*
- * GtkTreeViewColumn
- */
+* GtkTreeViewColumn
+*/
 
 // TreeViewColumns is a representation of GTK's GtkTreeViewColumn.
 type TreeViewColumn struct {
@@ -58,11 +55,11 @@ func TreeViewColumnNewWithAttribute(title string, renderer ICellRenderer, attrib
 	a_cstr := C.CString(attribute)
 	defer C.free(unsafe.Pointer(a_cstr))
 	c := C._gtk_tree_view_column_new_with_attributes_one((*C.gchar)(t_cstr),
-		renderer.toCellRenderer(), (*C.gchar)(a_cstr), C.gint(column))
-	if c == nil {
-		return nil, nilPtrErr
-	}
-	return wrapTreeViewColumn(glib.Take(unsafe.Pointer(c))), nil
+	renderer.toCellRenderer(), (*C.gchar)(a_cstr), C.gint(column))
+if c == nil {
+	return nil, nilPtrErr
+}
+return wrapTreeViewColumn(glib.Take(unsafe.Pointer(c))), nil
 }
 
 // AddAttribute() is a wrapper around gtk_tree_view_column_add_attribute().
@@ -70,7 +67,7 @@ func (v *TreeViewColumn) AddAttribute(renderer ICellRenderer, attribute string, 
 	cstr := C.CString(attribute)
 	defer C.free(unsafe.Pointer(cstr))
 	C.gtk_tree_view_column_add_attribute(v.native(),
-		renderer.toCellRenderer(), (*C.gchar)(cstr), C.gint(column))
+	renderer.toCellRenderer(), (*C.gchar)(cstr), C.gint(column))
 }
 
 // SetExpand() is a wrapper around gtk_tree_view_column_set_expand().

@@ -9,14 +9,13 @@ import "C"
 import (
 	"unsafe"
 
-	"github.com/gotk3/gotk3/pango"
-
-	"github.com/gotk3/gotk3/glib"
+	"github.com/whakapapa/gtkgo/pango"
+	"github.com/whakapapa/gtkgo/glib"
 )
 
 /*
- * GtkLabel
- */
+* GtkLabel
+*/
 
 // Label is a representation of GTK's GtkLabel.
 type Label struct {
@@ -246,7 +245,7 @@ func LabelNewWithMnemonic(str string) (*Label, error) {
 // SelectRegion is a wrapper around gtk_label_select_region().
 func (v *Label) SelectRegion(startOffset, endOffset int) {
 	C.gtk_label_select_region(v.native(), C.gint(startOffset),
-		C.gint(endOffset))
+	C.gint(endOffset))
 }
 
 // SetSelectable is a wrapper around gtk_label_set_selectable().

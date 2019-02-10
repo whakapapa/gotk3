@@ -7,8 +7,8 @@ import (
 	"errors"
 	"unsafe"
 
-	"github.com/gotk3/gotk3/gdk"
-	"github.com/gotk3/gotk3/glib"
+	"github.com/whakapapa/gtkgo/gdk"
+	"github.com/whakapapa/gtkgo/glib"
 )
 
 /*
@@ -593,6 +593,12 @@ func (v *Window) GetMnemonicModifier() gdk.ModifierType {
 // SetMnemonicModifier is a wrapper around gtk_window_set_mnemonic_modifier().
 func (v *Window) SetMnemonicModifier(mods gdk.ModifierType) {
 	C.gtk_window_set_mnemonic_modifier(v.native(), C.GdkModifierType(mods))
+}
+
+// IsMaximized is a wrapper around gtk_window_is_maximized().
+func (v *Window) IsMaximized() bool {
+	c := C.gtk_window_is_maximized(v.native())
+	return gobool(c)
 }
 
 // TODO gtk_window_begin_move_drag().

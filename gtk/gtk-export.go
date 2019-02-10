@@ -8,7 +8,7 @@ import (
 	"strings"
 	"unsafe"
 
-	"github.com/gotk3/gotk3/glib"
+	"github.com/whakapapa/gtkgo/glib"
 )
 
 //export substring_match_equal_func

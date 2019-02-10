@@ -1,5 +1,3 @@
-// Same copyright and license as the rest of the files in this project
-
 package gtk
 
 // #include <gtk/gtk.h>
@@ -9,8 +7,8 @@ import "C"
 import "unsafe"
 
 /*
- * GtkTextMark
- */
+* GtkTextMark
+*/
 
 // TextMark is a representation of GTK's GtkTextMark
 type TextMark C.GtkTextMark

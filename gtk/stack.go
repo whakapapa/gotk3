@@ -1,9 +1,3 @@
-// Same copyright and license as the rest of the files in this project
-// This file contains accelerator related functions and structures
-
-// +build !gtk_3_6,!gtk_3_8,!gtk_3_10
-// not use this: go build -tags gtk_3_8'. Otherwise, if no build tags are used, GTK 3.10
-
 package gtk
 
 // #include <stdlib.h>
@@ -13,7 +7,7 @@ import "C"
 import (
 	"unsafe"
 
-	"github.com/gotk3/gotk3/glib"
+	"github.com/whakapapa/gtkgo/glib"
 )
 
 // GetChildByName is a wrapper around gtk_stack_get_child_by_name().

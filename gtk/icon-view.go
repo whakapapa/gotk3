@@ -7,13 +7,13 @@ import (
 	"runtime"
 	"unsafe"
 
-	"github.com/gotk3/gotk3/gdk"
-	"github.com/gotk3/gotk3/glib"
+	"github.com/whakapapa/gtkgo/gdk"
+	"github.com/whakapapa/gtkgo/glib"
 )
 
 /*
- * GtkIconView
- */
+* GtkIconView
+*/
 
 // IconView is a representation of GTK's GtkIconView.
 type IconView struct {
@@ -346,7 +346,7 @@ func (v *IconView) ItemActivated(path *TreePath) {
 // ScrollToPath is a wrapper around gtk_icon_view_scroll_to_path().
 func (v *IconView) ScrollToPath(path *TreePath, useAlign bool, rowAlign, colAlign float64) {
 	C.gtk_icon_view_scroll_to_path(v.native(), path.native(), gbool(useAlign),
-		C.gfloat(rowAlign), C.gfloat(colAlign))
+	C.gfloat(rowAlign), C.gfloat(colAlign))
 }
 
 // GetVisibleRange is a wrapper around gtk_icon_view_get_visible_range().
@@ -395,12 +395,12 @@ func (v *IconView) GetTooltipContext(x, y int, keyboardTip bool) (*TreeModel, *T
 	px := C.gint(x)
 	py := C.gint(y)
 	if !gobool(C.gtk_icon_view_get_tooltip_context(v.native(),
-		&px,
-		&py,
-		gbool(keyboardTip),
-		&cmodel,
-		&cpath,
-		citer,
+	&px,
+	&py,
+	gbool(keyboardTip),
+	&cmodel,
+	&cpath,
+	citer,
 	)) {
 		return nil, nil, nil
 	}

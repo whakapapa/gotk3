@@ -11,7 +11,7 @@ import (
 	"strconv"
 	"unsafe"
 
-	"github.com/gotk3/gotk3/glib"
+	"github.com/whakapapa/gtkgo/glib"
 )
 
 func init() {

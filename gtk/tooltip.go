@@ -6,13 +6,13 @@ import "C"
 import (
 	"unsafe"
 
-	"github.com/gotk3/gotk3/gdk"
-	"github.com/gotk3/gotk3/glib"
+	"github.com/whakapapa/gtkgo/gdk"
+	"github.com/whakapapa/gtkgo/glib"
 )
 
 /*
- * GtkTooltip
- */
+* GtkTooltip
+*/
 
 type Tooltip struct {
 	Widget
@@ -54,7 +54,7 @@ func (t *Tooltip) SetText(str string) {
 // SetIcon is a wrapper around gtk_tooltip_set_icon().
 func (t *Tooltip) SetIcon(pixbuf *gdk.Pixbuf) {
 	C.gtk_tooltip_set_icon(t.native(),
-		(*C.GdkPixbuf)(unsafe.Pointer(pixbuf.Native())))
+	(*C.GdkPixbuf)(unsafe.Pointer(pixbuf.Native())))
 }
 
 // SetIconFromIconName is a wrapper around gtk_tooltip_set_icon_from_icon_name().
@@ -62,8 +62,8 @@ func (t *Tooltip) SetIconFromIconName(iconName string, size IconSize) {
 	cstr := C.CString(iconName)
 	defer C.free(unsafe.Pointer(cstr))
 	C.gtk_tooltip_set_icon_from_icon_name(t.native(),
-		(*C.gchar)(cstr),
-		C.GtkIconSize(size))
+	(*C.gchar)(cstr),
+	C.GtkIconSize(size))
 }
 
 // func (t *Tooltip) SetIconFromGIcon() { }

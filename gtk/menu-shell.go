@@ -1,6 +1,3 @@
-// Same copyright and license as the rest of the files in this project
-// This file contains accelerator related functions and structures
-
 package gtk
 
 // #include <gtk/gtk.h>
@@ -9,12 +6,12 @@ import "C"
 import (
 	"unsafe"
 
-	"github.com/gotk3/gotk3/glib"
+	"github.com/whakapapa/gtkgo/glib"
 )
 
 /*
- * GtkMenuShell
- */
+* GtkMenuShell
+*/
 
 // MenuShell is a representation of GTK's GtkMenuShell.
 type MenuShell struct {

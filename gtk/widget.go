@@ -8,8 +8,8 @@ import (
 	"errors"
 	"unsafe"
 
-	"github.com/gotk3/gotk3/gdk"
-	"github.com/gotk3/gotk3/glib"
+	"github.com/whakapapa/gtkgo/gdk"
+	"github.com/whakapapa/gtkgo/glib"
 )
 
 
@@ -649,4 +649,51 @@ func (v *Widget) QueueDrawArea(x, y, w, h int) {
 		}
 		s := &gdk.Screen{glib.Take(unsafe.Pointer(c))}
 		return s, nil
+	}
+
+	// IsVisible is a wrapper around gtk_widget_is_visible().
+	func (v *Widget) IsVisible() bool {
+		c := C.gtk_widget_is_visible(v.native())
+		return gobool(c)
+	}
+
+	// SetOpacity is a wrapper around gtk_widget_set_opacity()
+	func (v *Widget) SetOpacity(opacity float64) {
+		C.gtk_widget_set_opacity(v.native(), C.double(opacity))
+	}
+
+	// GetOpacity is a wrapper around gtk_widget_get_opacity()
+	func (v *Widget) GetOpacity() float64 {
+		c := C.gtk_widget_get_opacity(v.native())
+		return float64(c)
+	}
+
+	func (v *Widget) SetMarginStart(margin int) {
+		C.gtk_widget_set_margin_start(v.native(), C.gint(margin))
+	}
+
+	func (v *Widget) GetMarginStart() int {
+		c := C.gtk_widget_get_margin_start(v.native())
+		return int(c)
+	}
+
+	func (v *Widget) SetMarginEnd(margin int) {
+		C.gtk_widget_set_margin_end(v.native(), C.gint(margin))
+	}
+
+	func (v *Widget) GetMarginEnd() int {
+		c := C.gtk_widget_get_margin_end(v.native())
+		return int(c)
+	}
+
+	// GetClip is a wrapper around gtk_widget_get_clip().
+	func (v *Widget) GetClip() *Allocation {
+		var clip Allocation
+		C.gtk_widget_get_clip(v.native(), clip.native())
+		return &clip
+	}
+
+	// SetClip is a wrapper around gtk_widget_set_clip().
+	func (v *Widget) SetClip(clip *Allocation) {
+		C.gtk_widget_set_clip(v.native(), clip.native())
 	}

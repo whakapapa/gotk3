@@ -1,21 +1,3 @@
-/*
- * Copyright (c) 2015- terrak <terrak1975@gmail.com>
- *
- * This file originated from: http://www.terrak.net/
- *
- * Permission to use, copy, modify, and distribute this software for any
- * purpose with or without fee is hereby granted, provided that the above
- * copyright notice and this permission notice appear in all copies.
- *
- * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
- * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
- * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
- * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
- * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
- * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
- * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- */
-
 package pango
 
 // #include <pango/pango.h>
@@ -53,11 +35,11 @@ func GravityToRotation(gravity Gravity) float64 {
 //PangoGravity pango_gravity_get_for_matrix (const PangoMatrix *matrix) G_GNUC_PURE;
 
 //PangoGravity pango_gravity_get_for_script (PangoScript        script,
-//					   PangoGravity       base_gravity,
-//					   PangoGravityHint   hint) G_GNUC_CONST;
+	//					   PangoGravity       base_gravity,
+	//					   PangoGravityHint   hint) G_GNUC_CONST;
 
-//PangoGravity pango_gravity_get_for_script_and_width
-//					  (PangoScript        script,
-//					   gboolean           wide,
-//					   PangoGravity       base_gravity,
-//					   PangoGravityHint   hint) G_GNUC_CONST;
+	//PangoGravity pango_gravity_get_for_script_and_width
+	//					  (PangoScript        script,
+		//					   gboolean           wide,
+		//					   PangoGravity       base_gravity,
+		//					   PangoGravityHint   hint) G_GNUC_CONST;

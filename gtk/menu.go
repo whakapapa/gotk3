@@ -1,6 +1,3 @@
-// Same copyright and license as the rest of the files in this project
-// This file contains accelerator related functions and structures
-
 package gtk
 
 // #include <gtk/gtk.h>
@@ -9,12 +6,12 @@ import "C"
 import (
 	"unsafe"
 
-	"github.com/gotk3/gotk3/glib"
+	"github.com/whakapapa/gtkgo/glib"
 )
 
 /*
- * GtkMenu
- */
+* GtkMenu
+*/
 
 // Menu is a representation of GTK's GtkMenu.
 type Menu struct {
@@ -73,4 +70,16 @@ func (v *Menu) Popdown() {
 // ReorderChild() is a wrapper around gtk_menu_reorder_child().
 func (v *Menu) ReorderChild(child IWidget, position int) {
 	C.gtk_menu_reorder_child(v.native(), child.toWidget(), C.gint(position))
+}
+
+// PopupAtPointer() is a wrapper for gtk_menu_popup_at_pointer()
+func (v *Menu) PopupAtPointer(triggerEvent *gdk.Event) {
+	e := (*C.GdkEvent)(unsafe.Pointer(triggerEvent.Native()))
+	C.gtk_menu_popup_at_pointer(v.native(), e)
+}
+
+// PopupAtWidget() is a wrapper for gtk_menu_popup_at_widget()
+func (v *Menu) PopupAtWidget(widget IWidget, widgetAnchor gdk.GdkGravity, menuAnchor gdk.GdkGravity, triggerEvent *gdk.Event) {
+	e := (*C.GdkEvent)(unsafe.Pointer(triggerEvent.Native()))
+	C.gtk_menu_popup_at_widget(v.native(), widget.toWidget(), C.GdkGravity(widgetAnchor), C.GdkGravity(menuAnchor), e)
 }

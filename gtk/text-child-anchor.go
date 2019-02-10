@@ -1,5 +1,3 @@
-// Same copyright and license as the rest of the files in this project
-
 package gtk
 
 // #include <gtk/gtk.h>
@@ -7,8 +5,8 @@ package gtk
 import "C"
 
 /*
- * GtkTextChildAnchor
- */
+* GtkTextChildAnchor
+*/
 
 // TextChildAnchor is a representation of GTK's GtkTextChildAnchor
 type TextChildAnchor C.GtkTextChildAnchor

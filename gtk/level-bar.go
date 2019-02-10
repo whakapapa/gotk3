@@ -6,7 +6,7 @@ import "C"
 import (
 	"unsafe"
 
-	"github.com/gotk3/gotk3/glib"
+	"github.com/whakapapa/gtkgo/glib"
 )
 
 func init() {
@@ -35,8 +35,8 @@ func marshalLevelBarMode(p uintptr) (interface{}, error) {
 }
 
 /*
- * GtkLevelBar
- */
+* GtkLevelBar
+*/
 
 type LevelBar struct {
 	Widget
@@ -148,4 +148,15 @@ func (v *LevelBar) GetOffsetValue(name string) (float64, bool) {
 	var value C.gdouble
 	c := C.gtk_level_bar_get_offset_value(v.native(), (*C.gchar)(cstr), &value)
 	return float64(value), gobool(c)
+}
+
+// SetInverted() is a wrapper around gtk_level_bar_set_inverted().
+func (v *LevelBar) SetInverted(inverted bool) {
+	C.gtk_level_bar_set_inverted(v.native(), gbool(inverted))
+}
+
+// GetInverted() is a wrapper around gtk_level_bar_get_inverted().
+func (v *LevelBar) GetInverted() bool {
+	c := C.gtk_level_bar_get_inverted(v.native())
+	return gobool(c)
 }

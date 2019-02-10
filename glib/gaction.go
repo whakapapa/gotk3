@@ -33,7 +33,7 @@ func (v *Action) toAction() *Action {
 }
 
 // gboolean g_action_parse_detailed_name (const gchar *detailed_name, gchar **action_name, GVariant **target_value, GError **error);
-// gchar * g_action_print_detailed_name (const gchar *action_name, GVariant *target_value);
+// gchar *g_action_print_detailed_name (const gchar *action_name, GVariant *target_value);
 
 // native() returns a pointer to the underlying GAction.
 func (v *Action) native() *C.GAction {

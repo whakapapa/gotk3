@@ -1,15 +1,13 @@
-// +build !gtk_3_6,!gtk_3_8,!gtk_3_10,!gtk_3_12,!gtk_3_14,!gtk_3_16,!gtk_3_18,!gtk_3_20
-
 package gtk
 
 // #include <gtk/gtk.h>
 // #include "gtk.go.h"
-// #include "shortcutswindow_since_3_22.go.h"
+// #include "shortcutswindow.go.h"
 import "C"
 import (
 	"unsafe"
 
-	"github.com/gotk3/gotk3/glib"
+	"github.com/whakapapa/gtkgo/glib"
 )
 
 func init() {
@@ -29,8 +27,8 @@ func init() {
 }
 
 /*
- * GtkShortcutsWindow
- */
+* GtkShortcutsWindow
+*/
 
 // ShortcutsWindow is a representation of GTK's GtkShortcutsWindow.
 type ShortcutsWindow struct {
@@ -56,8 +54,8 @@ func wrapShortcutsWindow(obj *glib.Object) *ShortcutsWindow {
 }
 
 /*
- * GtkShortcutsSection
- */
+* GtkShortcutsSection
+*/
 
 // ShortcutsWindow is a representation of GTK's GtkShortcutsSection.
 type ShortcutsSection struct {
@@ -84,8 +82,8 @@ func wrapShortcutsSection(obj *glib.Object) *ShortcutsSection {
 }
 
 /*
- * GtkShortcutsSection
- */
+* GtkShortcutsSection
+*/
 
 // ShortcutsWindow is a representation of GTK's GtkShortcutsGroup.
 type ShortcutsGroup struct {
@@ -112,8 +110,8 @@ func wrapShortcutsGroup(obj *glib.Object) *ShortcutsGroup {
 }
 
 /*
- * GtkShortcutsShortcut
- */
+* GtkShortcutsShortcut
+*/
 
 // ShortcutsWindow is a representation of GTK's GtkShortcutsShortcut.
 type ShortcutsShortcut struct {

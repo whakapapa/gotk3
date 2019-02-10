@@ -1,5 +1,3 @@
-// Same copyright and license as the rest of the files in this project
-
 package gtk
 
 // #include <gtk/gtk.h>
@@ -9,12 +7,12 @@ import "C"
 import (
 	"unsafe"
 
-	"github.com/gotk3/gotk3/glib"
+	"github.com/whakapapa/gtkgo/glib"
 )
 
 /*
- * GtkTextIter
- */
+* GtkTextIter
+*/
 
 // TextIter is a representation of GTK's GtkTextIter
 type TextIter C.GtkTextIter

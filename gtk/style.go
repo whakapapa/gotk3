@@ -1,6 +1,3 @@
-// Same copyright and license as the rest of the files in this project
-// This file contains style related functions and structures
-
 package gtk
 
 // #include <gtk/gtk.h>
@@ -9,8 +6,8 @@ import "C"
 import (
 	"unsafe"
 
-	"github.com/gotk3/gotk3/gdk"
-	"github.com/gotk3/gotk3/glib"
+	"github.com/whakapapa/gtkgo/gdk"
+	"github.com/whakapapa/gtkgo/glib"
 )
 
 type StyleProviderPriority int
@@ -24,8 +21,8 @@ const (
 )
 
 /*
- * GtkStyleContext
- */
+* GtkStyleContext
+*/
 
 // StyleContext is a representation of GTK's GtkStyleContext.
 type StyleContext struct {
