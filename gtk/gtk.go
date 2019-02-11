@@ -1790,7 +1790,7 @@ func marshalListBoxRow(p uintptr) (interface{}, error) {
 }
 
 func wrapListBoxRow(obj *glib.Object) *ListBoxRow {
-	return &ListBoxRow{Bin{Container{Widget{glib.InitiallyUnowned{obj}}}}}
+	return &ListBoxRow{Bin{Container{Widget {glib.InitiallyUnowned{obj}}}}}
 }
 
 func ListBoxRowNew() (*ListBoxRow, error) {
