@@ -942,8 +942,7 @@ func InitCheck(args *[]string) error {
 	}
 	if success {
 		return nil
-	}
-	else {
+	} else {
 		return errors.New("Unable to initialize GTK")
 	}
 }
@@ -1424,8 +1423,7 @@ var (
 	builderSignals = struct {
 		sync.RWMutex
 		m map[*C.GtkBuilder]map[string]interface{}
-	}
-	{
+	} {
 		m: make(map[*C.GtkBuilder]map[string]interface{}),
 	}
 )
