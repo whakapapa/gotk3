@@ -906,8 +906,7 @@ func Init(args *[]string) {
 			C.free(unsafe.Pointer(cstr))
 		}
 		*args = unhandled
-	}
-	else {
+	} else {
 		C.gtk_init(nil, nil)
 	}
 }
@@ -938,8 +937,7 @@ func InitCheck(args *[]string) error {
 			C.free(unsafe.Pointer(cstr))
 		}
 		*args = unhandled
-	}
-	else {
+	} else {
 		success = gobool(C.gtk_init_check(nil, nil))
 	}
 	if success {
