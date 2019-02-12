@@ -2752,7 +2752,7 @@ func (v *ColorButton) native() *C.GtkColorButton {
 func wrapColorButton(obj *glib.Object) *ColorButton {
 	cc := wrapColorChooser(obj)
 	actionable := wrapActionable(obj)
-	return &ColorButton{Button Bin{Container{Widget{glib.InitiallyUnowned{obj}}}}, actionable}, *cc
+	return &ColorButton{Button{Bin{Container{Widget{glib.InitiallyUnowned{obj}}}}, actionable}, *cc}
 }
 
 // ColorButtonNew is a wrapper around gtk_color_button_new().
