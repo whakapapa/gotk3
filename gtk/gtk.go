@@ -1739,11 +1739,10 @@ var (
 	listBoxFilterFuncRegistry = struct {
 		sync.RWMutex
 		next int
-		m    map[int]listBoxFilterFuncData
-	}
-	{
+		m	map[int]listBoxFilterFuncData
+	} {
 		next: 1,
-		m:    make(map[int]listBoxFilterFuncData),
+		m:	make(map[int]listBoxFilterFuncData),
 	}
 )
 
