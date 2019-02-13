@@ -46,28 +46,30 @@ func wrapPopover(obj *glib.Object) *Popover {
 func PopoverNew(relative IWidget) (*Popover, error) {
 	//Takes relative to widget
 	var c *C.struct__GtkWidget
-	if relative == nil {
+	switch {
+	case relative == nil:
 		c = C.gtk_popover_new(nil)
-		} else {
-			c = C.gtk_popover_new(relative.toWidget())
-		}
-		if c == nil {
-			return nil, nilPtrErr
-		}
-		return wrapPopover(glib.Take(unsafe.Pointer(c))), nil
+	default:
+		c = C.gtk_popover_new(relative.toWidget())
 	}
 
-	//gtk_popover_set_default_widget (GtkPopover *popover, GtkWidget *widget);
-	func (p *Popover) SetDefaultWidget(widget IWidget) {
-		C.gtk_popover_set_default_widget(p.native(), widget.toWidget())
+	if c == nil {
+		return nil, nilPtrErr
 	}
+	return wrapPopover(glib.Take(unsafe.Pointer(c))), nil
+}
 
-	//GtkWidget *
-	//gtk_popover_get_default_widget (GtkPopover *popover);
-	func (p *Popover) GetDefaultWidget() *Widget {
-		w := C.gtk_popover_get_default_widget(p.native())
-		if w == nil {
-			return nil
-		}
-		return &Widget{glib.InitiallyUnowned{glib.Take(unsafe.Pointer(w))}}
+//gtk_popover_set_default_widget (GtkPopover *popover, GtkWidget *widget);
+func (p *Popover) SetDefaultWidget(widget IWidget) {
+	C.gtk_popover_set_default_widget(p.native(), widget.toWidget())
+}
+
+//GtkWidget *
+//gtk_popover_get_default_widget (GtkPopover *popover);
+func (p *Popover) GetDefaultWidget() *Widget {
+	w := C.gtk_popover_get_default_widget(p.native())
+	if w == nil {
+		return nil
 	}
+	return &Widget{glib.InitiallyUnowned{glib.Take(unsafe.Pointer(w))}}
+}

@@ -63,18 +63,19 @@ func (a *ActionBar) PackEnd(child IWidget) {
 
 //gtk_action_bar_set_center_widget(GtkActionBar *action_bar,GtkWidget *center_widget)
 func (a *ActionBar) SetCenterWidget(child IWidget) {
-	if child == nil {
+	switch {
+	case child == nil:
 		C.gtk_action_bar_set_center_widget(a.native(), nil)
-		} else {
-			C.gtk_action_bar_set_center_widget(a.native(), child.toWidget())
-		}
+	default:
+		C.gtk_action_bar_set_center_widget(a.native(), child.toWidget())
 	}
+}
 
-	//gtk_action_bar_get_center_widget(GtkActionBar *action_bar)
-	func (a *ActionBar) GetCenterWidget() *Widget {
-		w := C.gtk_action_bar_get_center_widget(a.native())
-		if w == nil {
-			return nil
-		}
-		return &Widget{glib.InitiallyUnowned{glib.Take(unsafe.Pointer(w))}}
+//gtk_action_bar_get_center_widget(GtkActionBar *action_bar)
+func (a *ActionBar) GetCenterWidget() *Widget {
+	w := C.gtk_action_bar_get_center_widget(a.native())
+	if w == nil {
+		return nil
 	}
+	return &Widget{glib.InitiallyUnowned{glib.Take(unsafe.Pointer(w))}}
+}

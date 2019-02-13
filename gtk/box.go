@@ -11,18 +11,19 @@ import (
 
 //gtk_box_bar_set_center_widget(GtkBox *box,GtkWidget *center_widget)
 func (a *Box) SetCenterWidget(child IWidget) {
-	if child == nil {
+	switch {
+	case child == nil:
 		C.gtk_box_set_center_widget(a.native(), nil)
-		} else {
-			C.gtk_box_set_center_widget(a.native(), child.toWidget())
-		}
+	default:
+		C.gtk_box_set_center_widget(a.native(), child.toWidget())
 	}
+}
 
-	//gtk_box_bar_get_center_widget(GtkBox *box)
-	func (a *Box) GetCenterWidget() *Widget {
-		w := C.gtk_box_get_center_widget(a.native())
-		if w == nil {
-			return nil
-		}
-		return &Widget{glib.InitiallyUnowned{glib.Take(unsafe.Pointer(w))}}
+//gtk_box_bar_get_center_widget(GtkBox *box)
+func (a *Box) GetCenterWidget() *Widget {
+	w := C.gtk_box_get_center_widget(a.native())
+	if w == nil {
+		return nil
 	}
+	return &Widget{glib.InitiallyUnowned{glib.Take(unsafe.Pointer(w))}}
+}
