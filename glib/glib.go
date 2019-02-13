@@ -196,8 +196,7 @@ func goMarshal(closure *C.GClosure, retValue *C.GValue, nParams C.guint, params 
 	if retValue != nil && len(rv) > 0 {
 		switch {
 		case g, err := GValue(rv[0].Interface()); err != nil:
-			fmt.Fprintf(os.Stderr,
-				"cannot save callback return value: %v", err)
+			fmt.Fprintf(os.Stderr, "cannot save callback return value: %v", err)
 		default:
 			*retValue = *g.native()
 		}
